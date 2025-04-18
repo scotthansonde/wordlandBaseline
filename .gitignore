@@ -1,0 +1,12 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled or temp files
+*.log
+*.tmp
+*.bak
+
+# Ignore WordPress core files (just in case)
+/wp-admin/
+/wp-includes/
