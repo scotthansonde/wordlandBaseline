@@ -1,4 +1,4 @@
-# Wordland Theme for WordPress
+# WordLand Baseline Theme for WordPress
 
 A child theme for the `retrospect-wpcom` WordPress theme.
 
