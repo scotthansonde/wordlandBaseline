@@ -20,37 +20,19 @@ add_filter( 'render_block_core/social-link', function( $block_content, $block ) 
     return $block_content;
 }, 10, 2 );
 
+// Register categories filter
+add_filter( 'get_the_terms', 'mytheme_filter_uncategorized_terms', 10, 3 );
 
-function mytheme_register_filtered_categories_block() {
-    register_block_type( 'mytheme/filtered-categories', array(
-        'render_callback' => 'mytheme_render_filtered_categories_block'
-    ) );
-}
-add_action( 'init', 'mytheme_register_filtered_categories_block' );
-
-
-function mytheme_render_filtered_categories_block( $attributes, $content ) {
-    if ( ! is_singular() ) {
-        return '';
+function mytheme_filter_uncategorized_terms( $terms, $post_id, $taxonomy ) {
+    if ( is_admin() || ! is_main_query() || 'category' !== $taxonomy || ! is_singular() ) {
+        return $terms;
     }
 
-    $categories = get_the_category();
-    if ( empty( $categories ) ) return '';
+    if ( empty( $terms ) || ! is_array( $terms ) ) {
+        return $terms;
+    }
 
-    $filtered = array_filter( $categories, fn( $cat ) => $cat->slug !== 'uncategorized' );
-    if ( empty( $filtered ) ) return '';
-
-    $output = '<div class="wp-block-post-terms has-text-color has-theme-3-color" style="color: var(--wp--preset--color--theme-3);">';
-    $output .= 'Categories: ';
-
-    // Collect linked category names into an array
-    $linked_names = array_map(function($cat) {
-        return '<a href="' . esc_url(get_category_link($cat)) . '" style="color: var(--wp--preset--color--theme-3);">' . esc_html($cat->name) . '</a>';
-    }, $filtered);
-
-    // Join them with commas
-    $output .= implode(', ', $linked_names);
-    $output .= '</div>';
-
-    return $output;
+    return array_filter( $terms, function( $term ) {
+        return $term->slug !== 'uncategorized';
+    } );
 }
