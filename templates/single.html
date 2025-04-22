@@ -91,11 +91,13 @@
                     <div style="height:var(--wp--preset--spacing--20)" aria-hidden="true" class="wp-block-spacer"></div>
                     <!-- /wp:spacer -->
 
-                    <!-- wp:group {"style":{"spacing":{"blockGap":"8px"}},"fontSize":"x-small","layout":{"type":"constrained"}} -->
-                    <div class="wp-block-group has-x-small-font-size">
-                        <!-- wp:post-navigation-link {"type":"previous","showTitle":true,"arrow":"arrow"} /-->
+                    <!-- wp:group {"layout":{"type":"flex","justifyContent":"space-between"},"className":"post-nav-links has-x-small-font-size"} -->
+                    <div class="wp-block-group post-nav-links has-x-small-font-size">
 
-                        <!-- wp:post-navigation-link {"showTitle":true,"arrow":"arrow"} /-->
+                        <!-- wp:post-navigation-link {"type":"previous","showTitle":false,"arrow":"arrow"} /-->
+
+                        <!-- wp:post-navigation-link {"showTitle":false,"arrow":"arrow"} /-->
+
                     </div>
                     <!-- /wp:group -->
                 </div>

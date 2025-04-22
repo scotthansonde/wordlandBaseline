@@ -12,3 +12,7 @@
 */
 
 /* You can add custom CSS below */
+.wp-block-post-navigation-link.arrow-only a {
+  font-size: 1.5em;
+  text-decoration: none;
+}
