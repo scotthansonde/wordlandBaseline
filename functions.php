@@ -39,7 +39,6 @@ function mytheme_filter_uncategorized_terms( $terms, $post_id, $taxonomy ) {
 
 // Tooltip for next/previous links
 add_filter( 'render_block_core/post-navigation-link', function( $block_content, $block ) {
-    if ( isset( $block['attrs']['showTitle'] ) && $block['attrs']['showTitle'] === false ) {
         global $post;
 
         $is_previous = isset( $block['attrs']['type'] ) && $block['attrs']['type'] === 'previous';
@@ -65,7 +64,6 @@ add_filter( 'render_block_core/post-navigation-link', function( $block_content, 
             $title,
             esc_html( $arrow )
         );
-    }
-
+    
     return $block_content;
 }, 10, 2 );
