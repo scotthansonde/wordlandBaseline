@@ -56,8 +56,31 @@
 			"text": "var(--wp--preset--color--theme-5)"
 		},
 		"typography": {
-			"fontSize": "var(--wp--preset--font-size--small)",
+			"fontSize": "var(--wp--preset--font-size--normal)",
 			"fontWeight": "400"
+		},
+		"elements": {
+			"h3": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontWeight": "700"
+				}
+			},
+			"h1": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--large)",
+					"lineHeight": "1"
+				}
+			},
+			"h2": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--medium)",
+					"fontWeight": {
+						"ref": "styles.elements.h1.typography.fontWeight"
+					},
+					"lineHeight": "1"
+				}
+			}
 		}
 	},
 	"version": 3,
