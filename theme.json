@@ -62,7 +62,7 @@
 		"elements": {
 			"h3": {
 				"typography": {
-					"fontSize": "var(--wp--preset--font-size--small)",
+					"fontSize": "var(--wp--preset--font-size--normal)",
 					"fontWeight": "700"
 				}
 			},

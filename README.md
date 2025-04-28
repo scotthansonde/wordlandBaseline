@@ -7,7 +7,7 @@ theme by Automatic. Retrospect is distributed under the GNU General Public Licen
 WordLand Baseline has only been tested on a self-hosted WordPress site and
 not at wordpress.com. When finished it will become a full-fledged WordPress theme.
 
-## How to use while under developemnt
+## How to use while under development
 
 1. Download and install the [Retrospect](https://wordpress.com/theme/retrospect) theme
    - Retrospect is not available from the Add Themes page on the WordPress dashboard
