@@ -17,12 +17,6 @@
   text-decoration: none;
 }
 
-/* constrain post image width */
-.wp-block-post-content p {
-  margin: 0; /* Removes default spacing */
-  padding: 0;
-}
-
 .wp-block-post-content p img {
   max-width: 100%; /* Scale down if too large */
   height: auto;    /* Maintain aspect ratio */
