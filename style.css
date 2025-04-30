@@ -5,7 +5,7 @@
  Author:         Scott Hanson
  Author URI:     https://wordland.shanson.de
  Template:       retrospect-wpcom
- Version:        0.0.4
+ Version:        0.0.4a-imgTest
  License: GNU General Public License v2 or later
  License URI: https://www.gnu.org/licenses/gpl-2.0.html
  Text Domain: wordland-baseline
@@ -15,4 +15,16 @@
 .wp-block-post-navigation-link.arrow-only a {
   font-size: 1.5em;
   text-decoration: none;
+}
+
+/* constrain post image width */
+.wp-block-post-content p {
+  margin: 0; /* Removes default spacing */
+  padding: 0;
+}
+
+.wp-block-post-content p img {
+  max-width: 100%; /* Scale down if too large */
+  height: auto;    /* Maintain aspect ratio */
+  display: block;  /* Remove inline spacing */
 }
