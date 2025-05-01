@@ -7,6 +7,7 @@ add_action( 'wp_enqueue_scripts', function() {
     wp_enqueue_style( 'wordland-child-style', get_stylesheet_uri(), ['retrospect-parent-style'] );
 });
 
+// Add feed link to social links
 add_filter( 'render_block_core/social-link', function( $block_content, $block ) {
     if ( isset( $block['attrs']['service'] ) && $block['attrs']['service'] === 'feed' ) {
         // Replace href="#" or whatever is hardcoded with the dynamic feed link
@@ -67,3 +68,28 @@ add_filter( 'render_block_core/post-navigation-link', function( $block_content, 
     
     return $block_content;
 }, 10, 2 );
+
+// Custom post meta output: post date and author name
+function custom_post_meta_output( $block_content, $block ) {
+    if ( 'core/template-part' === $block['blockName'] && isset( $block['attrs']['slug'] ) && 'post-meta' === $block['attrs']['slug'] ) {
+        if ( is_single() || is_home() ) {
+            $post_date = get_the_date( 'F j, Y' );
+            $first_name = get_the_author_meta( 'first_name' );
+            $last_name = get_the_author_meta( 'last_name' );
+            $author_name = trim( $first_name . ' ' . $last_name );
+
+            // Fallback to username if both first and last names are empty
+            if ( empty( $author_name ) ) {
+                $author_name = get_the_author();
+            }
+
+            // Manually add the necessary classes
+            $classes = 'has-link-color wp-block-post-date has-text-color has-theme-3-color has-x-small-font-size';
+
+            $custom_meta = '<p class="' . esc_attr( $classes ) . '">' . esc_html( $post_date ) . ' by ' . esc_html( $author_name ) . '.</p>';
+            return $custom_meta;
+        }
+    }
+    return $block_content;
+}
+add_filter( 'pre_render_block', 'custom_post_meta_output', 10, 2 );
