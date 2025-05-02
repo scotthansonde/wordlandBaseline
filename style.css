@@ -68,7 +68,7 @@ body {
 .divStoryBody p {
 	margin-bottom: 10px;
 	}
-.divStoryBody a {
+.divStoryBody a, .divFooter a {
 	color: #0088cc;
 	text-decoration: none;
 	cursor: pointer;
