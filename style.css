@@ -17,6 +17,12 @@
 body {
 	background-color: white;
 	}
+a {
+	text-decoration: none;
+	cursor: pointer;
+    color: inherit;
+	}
+
 .divPageBody {
 	width: 750px;
 	margin-left: auto;

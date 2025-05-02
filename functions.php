@@ -1,6 +1,19 @@
 <?php
 
 /**
+ * Get categories excluding Uncategorized
+ * Returns false if only Uncategorized exists
+ */
+function get_filtered_categories() {
+    $categories = get_the_category();
+    $filtered_cats = array_filter($categories, function($cat) {
+        return $cat->slug !== 'uncategorized';
+    });
+    
+    return !empty($filtered_cats) ? $filtered_cats : false;
+}
+
+/**
  * Theme functions and definitions
  *
  * @package WordlandBaselineMockup

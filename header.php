@@ -18,6 +18,12 @@
 
 	<div class="divPageBody">
 		<div class="divPageTop">
-			<div class="divSiteTitle"><?php bloginfo('name'); ?></div>
+			<div class="divSiteTitle">
+				<?php if (!is_front_page() && !is_home()) : ?>
+					<a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+				<?php else : ?>
+					<?php bloginfo('name'); ?>
+				<?php endif; ?>
+			</div>
 			<div class="divSiteDescription"><?php bloginfo('description'); ?></div>
 		</div>
