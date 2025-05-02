@@ -1,0 +1,111 @@
+/*
+ Theme Name:     WordLand Baseline Mockup
+ Theme URI:      https://github.com/scotthansonde/wordlandBaseline
+ Description:    A classic baseline theme for WordLand based on the Retrospect theme
+ Author:         Scott Hanson
+ Author URI:     https://wordland.shanson.de
+ Version:        0.0.1
+ License: GNU General Public License v2 or later
+ License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain: wordland-baseline-mockup
+*/
+
+/* You can add custom CSS below */
+
+/* Google Fonts are now loaded through functions.php */
+
+body {
+	background-color: white;
+	}
+.divPageBody {
+	width: 750px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	margin-bottom: 400px;
+	min-height: 400px;
+	font-family: Ubuntu, Arial, sans-serif;
+	font-size: 24px;
+	}
+
+.divPageTop {
+	text-align: center;
+	margin-bottom: 60px;
+	line-height: 110%;
+	}
+.divPageTop .divSiteTitle {
+	font-size: 48px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	letter-spacing: -0.04em;
+	}
+.divPageTop .divSiteDescription {
+	color: rgb(123, 123, 123);
+	font-size: 14px;
+	}
+
+.divStory {
+	line-height: 100%;
+	border: solid 1px lavender;
+	padding: 15px;
+	}
+.divStory .divStoryTitle {
+	font-size: 32px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	letter-spacing: -0.04em;
+	}
+.divLineUnderStoryTitle {
+	color: rgb(123, 123, 123);
+	font-size: 14px;
+	margin-left: 2px;
+	}
+
+.divStoryBody {
+	margin-top: 25px;
+	font-size: 16px;
+	}
+.divStoryBody p {
+	margin-bottom: 10px;
+	}
+.divStoryBody a {
+	color: #0088cc;
+	text-decoration: none;
+	cursor: pointer;
+	}
+.divStoryBody h3 {
+	font-size: 20px; /* a little bigger than paragraph text */
+	font-weight: bold;
+	margin-bottom: 0;
+	}
+.divStoryBody ol, .divStoryBody ul {
+	margin-top: .5em;
+	margin-bottom: 1em;
+	}
+.divStoryBody li {
+	margin-bottom: 5px;
+	line-height: inherit;
+	}
+
+.divCategories {
+	margin-top: 3em;
+	color: rgb(123, 123, 123);
+	font-size: 14px;
+	}
+
+.divFooter {
+	margin-top: 100px;
+	text-align: center;
+	font-size: 14px;
+	}
+
+@media screen and (max-width: 1024px) { /* styles for phone, tablet */
+	.divPageBody {
+		width: 95%;
+		margin-top: 80px;
+		}
+	}
+
+
+
+
