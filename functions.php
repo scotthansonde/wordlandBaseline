@@ -1,4 +1,14 @@
 <?php
+
+/**
+ * Theme functions and definitions
+ *
+ * @package WordlandBaselineMockup
+ */
+
+/**
+ * Enqueue scripts and styles.
+ */
 function yourtheme_enqueue_scripts() {
 	// Enqueue Google Fonts
 	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Rancho&display=swap', array(), null);
