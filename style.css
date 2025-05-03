@@ -12,17 +12,11 @@
 
 /* You can add custom CSS below */
 
-/* Google Fonts are now loaded through functions.php */
+/* https://github.com/scripting/baselinePlayground/blob/main/styles.css */
 
 body {
 	background-color: white;
 	}
-a {
-	text-decoration: none;
-	cursor: pointer;
-    color: inherit;
-	}
-
 .divPageBody {
 	width: 750px;
 	margin-left: auto;
@@ -112,6 +106,26 @@ a {
 		}
 	}
 
+/* Scott's custom styles */
+a {
+	text-decoration: none;
+	cursor: pointer;
+    color: inherit;
+	}
 
+.divStoryTitle  a:hover, .divSiteTitle a:hover, .divPagination a:hover {
+	text-decoration: underline;
+	}
 
+.divPagination {
+    color:rgb(0,0,0 );
+	font-size: 16px;
+    margin-top: 10px;
+	}
 
+/* Constrain images in posts */
+.divStory p img {
+  max-width: 100%; /* Scale down if too large */
+  height: auto;    /* Maintain aspect ratio */
+  display: block;  /* Remove inline spacing */
+}

@@ -30,15 +30,13 @@ get_header(); ?>
 			<?php endif; ?>
 		</div>
 	<?php endwhile; ?>
-
-	<!-- Pagination disabled -->
-	<!-- <div class="divPagination">
-        <?php the_posts_pagination(array(
+	<div class="divPagination">
+		<?php the_posts_pagination(array(
 			'mid_size' => 2,
 			'prev_text' => __('Previous', 'wordlandBaselineMockup'),
 			'next_text' => __('Next', 'wordlandBaselineMockup'),
 		)); ?>
-    </div> -->
+	</div>
 <?php else : ?>
 	<div class="divStory">
 		<div class="divStoryTitle">
