@@ -5,12 +5,12 @@
  * Returns false if only Uncategorized exists
  */
 function get_filtered_categories() {
-    $categories = get_the_category();
-    $filtered_cats = array_filter($categories, function($cat) {
-        return $cat->slug !== 'uncategorized';
-    });
-    
-    return !empty($filtered_cats) ? $filtered_cats : false;
+	$categories = get_the_category();
+	$filtered_cats = array_filter($categories, function ($cat) {
+		return $cat->slug !== 'uncategorized';
+	});
+
+	return !empty($filtered_cats) ? $filtered_cats : false;
 }
 
 /**
@@ -23,8 +23,8 @@ function get_filtered_categories() {
  * Enqueue scripts and styles.
  */
 function wordland_enqueue_scripts() {
-	// Enqueue Google Fonts
-	wp_enqueue_style('google-fonts', 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Rancho&display=swap', array(), null);
+	// Enqueue local fonts
+	wp_enqueue_style('wordland-fonts', get_template_directory_uri() . '/fonts/fonts.css', array(), '1.0.0');
 
 	// Enqueue theme stylesheet
 	wp_enqueue_style('wordland-style', get_stylesheet_uri());
