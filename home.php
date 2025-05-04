@@ -9,16 +9,23 @@
 get_header(); ?>
 
 <?php if (have_posts()) : ?>
-	<?php while (have_posts()) : the_post(); ?>
-		<?php get_template_part('template-parts/content'); ?>
-	<?php endwhile; ?>
-	<div class="divPagination">
-		<?php the_posts_pagination(array(
-			'mid_size' => 2,
-			'prev_text' => __('Previous', 'wordlandBaselineMockup'),
-			'next_text' => __('Next', 'wordlandBaselineMockup'),
-		)); ?>
+	<div id="idStories">
+		<?php
+		$query = new WP_Query([
+			'post_type' => 'post',
+			'posts_per_page' => 6,
+		]);
+		if ($query->have_posts()) :
+			while ($query->have_posts()) : $query->the_post();
+				get_template_part('template-parts/content', get_post_type());
+			endwhile;
+			wp_reset_postdata();
+		endif;
+		?>
 	</div>
+
+	<div id="idScrollTrigger" class="divPagination" style="text-align: center;"></div>
+
 <?php else : ?>
 	<div class="divStory">
 		<div class="divStoryTitle">

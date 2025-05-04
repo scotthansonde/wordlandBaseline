@@ -20,6 +20,22 @@ function get_filtered_categories() {
  */
 
 /**
+ * Add author meta data to REST API responses
+ */
+function wordland_register_rest_fields() {
+	register_rest_field('post', 'author_meta', [
+		'get_callback' => function($post) {
+			$author_id = $post['author'];
+			return [
+				'first_name' => get_user_meta($author_id, 'first_name', true),
+				'last_name'  => get_user_meta($author_id, 'last_name', true)
+			];
+		}
+	]);
+}
+add_action('rest_api_init', 'wordland_register_rest_fields');
+
+/**
  * Enqueue scripts and styles.
  */
 function wordland_enqueue_scripts() {
@@ -28,6 +44,19 @@ function wordland_enqueue_scripts() {
 
 	// Enqueue theme stylesheet
 	wp_enqueue_style('wordland-style', get_stylesheet_uri());
+
+	wp_enqueue_script(
+		'load-more-posts',
+		get_template_directory_uri() . '/js/load-more.js',
+		['jquery'],
+		null,
+		true
+	);
+
+	wp_localize_script('load-more-posts', 'wpApiSettings', [
+		'root'  => esc_url_raw(rest_url()),
+		'nonce' => wp_create_nonce('wp_rest')
+	]);
 }
 add_action('wp_enqueue_scripts', 'wordland_enqueue_scripts');
 
