@@ -1,19 +1,13 @@
 let page = 2;
 let loading = false;
-
-// Create and style the loading indicator
-const loadingIndicator = document.createElement('div');
-loadingIndicator.className = 'loading-indicator';
-loadingIndicator.innerHTML = 'Loading more posts...';
-loadingIndicator.style.display = 'none';
-document.getElementById('idScrollTrigger').appendChild(loadingIndicator);
+let totalPages = null;
 
 const observer = new IntersectionObserver((entries) => {
-  if (entries[0].isIntersecting && !loading) {
+  if (entries[0].isIntersecting && !loading && (totalPages === null || page <= totalPages)) {
     loadMorePosts();
   }
 }, {
-  rootMargin: '100px',
+  rootMargin: '300px',
   threshold: 0.1
 });
 
@@ -24,8 +18,12 @@ if (scrollTrigger) {
 }
 
 function loadMorePosts() {
+  if (totalPages !== null && page > totalPages) {
+    observer.disconnect();
+    return;
+  }
+
   loading = true;
-  loadingIndicator.style.display = 'block';
 
   fetch(`${wpApiSettings.root}wp/v2/posts?page=${page}&per_page=6&_embed=true`, {
     headers: {
@@ -36,6 +34,8 @@ function loadMorePosts() {
       if (!res.ok) {
         throw new Error('No more posts');
       }
+      // Get total pages from headers
+      totalPages = parseInt(res.headers.get('X-WP-TotalPages'));
       return res.json();
     })
     .then((posts) => {
@@ -79,12 +79,10 @@ function loadMorePosts() {
       });
       page++;
       loading = false; // Reset loading flag
-      loadingIndicator.style.display = 'none';
     })
     .catch((error) => {
       console.log('Error loading posts:', error);
       observer.disconnect();
-      loadingIndicator.innerHTML = '';
       loading = false;
     });
 }
