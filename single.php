@@ -10,23 +10,7 @@ get_header(); ?>
 
 <?php if (have_posts()) : ?>
 	<?php while (have_posts()) : the_post(); ?>
-		<div class="divStory">
-			<div class="divStoryTitle">
-				<?php the_title(); ?>
-			</div>
-			<div class="divLineUnderStoryTitle">
-				<?php echo get_the_date(); ?> by <?php echo get_the_author_meta('first_name') . ' ' . get_the_author_meta('last_name'); ?>
-			</div>
-			<div class="divStoryBody">
-				<?php the_content(); ?>
-			</div>
-			<?php $categories = get_filtered_categories(); ?>
-			<?php if ($categories) : ?>
-			<div class="divCategories">
-				Categories: <?php echo join(', ', array_map(function($cat) { return $cat->name; }, $categories)); ?>.
-			</div>
-			<?php endif; ?>
-		</div>
+		<?php get_template_part('template-parts/content'); ?>
 
 		<!-- Comments disabled -->
 		<!-- <?php if (comments_open() || get_comments_number()) : ?>
