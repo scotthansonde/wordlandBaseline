@@ -1,0 +1,24 @@
+/*
+ Theme Name:     WordLand Baseline
+ Theme URI:      https://github.com/scotthansonde/wordlandBaseline
+ Description:    A baseline theme for WordLand based on the Retrospect theme
+ Author:         Scott Hanson
+ Author URI:     https://wordland.shanson.de
+ Template:       retrospect-wpcom
+ Version:        0.0.4b-authorName
+ License: GNU General Public License v2 or later
+ License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain: wordland-baseline
+*/
+
+/* You can add custom CSS below */
+.wp-block-post-navigation-link.arrow-only a {
+  font-size: 1.5em;
+  text-decoration: none;
+}
+
+.wp-block-post-content p img {
+  max-width: 100%; /* Scale down if too large */
+  height: auto;    /* Maintain aspect ratio */
+  display: block;  /* Remove inline spacing */
+}
