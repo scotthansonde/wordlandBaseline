@@ -61,11 +61,13 @@ function loadMorePosts() {
         el.className = 'divStory';
         el.innerHTML = `
           <div class="divStoryTitle">
-            <a href="${post.link}">${post.title.rendered}</a>
+            <a href="${post.link}">${post.title.rendered || `${postDate} by ${authorName}`}</a>
           </div>
+          ${post.title.rendered ? `
           <div class="divLineUnderStoryTitle">
             ${postDate} by ${authorName}
           </div>
+          ` : ''}
           <div class="divStoryBody">
             ${post.content.rendered}
           </div>
