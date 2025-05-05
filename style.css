@@ -46,8 +46,6 @@ body {
 
 .divStory {
 	line-height: 100%;
-	border: solid 1px lavender;
-	padding: 15px;
 	}
 .divStory .divStoryTitle {
 	font-size: 32px;
@@ -55,7 +53,7 @@ body {
 	margin-bottom: 5px;
 	letter-spacing: -0.04em;
 	}
-.divLineUnderStoryTitle {
+.divStory .divLineUnderStoryTitle {
 	color: rgb(123, 123, 123);
 	font-size: 14px;
 	margin-left: 2px;
@@ -106,22 +104,9 @@ body {
 		}
 	}
 
-/* Scott's custom styles */
-a {
-	text-decoration: none;
-	cursor: pointer;
-    color: inherit;
-	}
 
-.divStoryTitle  a:hover, .divSiteTitle a:hover, .divPagination a:hover {
-	text-decoration: underline;
-	}
 
-.divPagination {
-    color:rgb(0,0,0 );
-	font-size: 16px;
-    margin-top: 10px;
-	}
+
 
 /* Constrain images in posts */
 .divStory p img {
