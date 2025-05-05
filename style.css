@@ -104,10 +104,21 @@ body {
 		}
 	}
 
+/* Scott's custom styles */
+a {
+	text-decoration: none;
+	cursor: pointer;
+    color: inherit;
+	}
 
+.divStoryTitle  a:hover, .divSiteTitle a:hover, .divPagination a:hover {
+	text-decoration: underline;
+	}
 
+#idStories .divStory .divStoryTitle {
+    margin-top:1.8em
 
-
+	}
 /* Constrain images in posts */
 .divStory p img {
   max-width: 100%; /* Scale down if too large */
