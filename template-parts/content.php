@@ -28,12 +28,14 @@
 	<div class="divStoryBody">
 		<?php the_content(); ?>
 	</div>
-	<?php $categories = get_filtered_categories(); ?>
-	<?php if ($categories) : ?>
-		<div class="divCategories">
-			Categories: <?php echo join(', ', array_map(function ($cat) {
-							return $cat->name;
-						}, $categories)); ?>.
-		</div>
+	<?php if (is_single()) : ?>
+		<?php $categories = get_filtered_categories(); ?>
+		<?php if ($categories) : ?>
+			<div class="divCategories">
+				Categories: <?php echo join(', ', array_map(function ($cat) {
+						return $cat->name;
+					}, $categories)); ?>.
+			</div>
+		<?php endif; ?>
 	<?php endif; ?>
 </div>
