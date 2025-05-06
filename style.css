@@ -19,6 +19,7 @@
 .divSiteTitle {
   line-height: 1.1;
 }
+
 .divStoryTitle {
   line-height: 1.0;
 }
@@ -27,11 +28,15 @@ a {
 	text-decoration: none;
 	cursor: pointer;
     color: inherit;
-	}
+}
+
+.divStoryBody h2 {
+	font-size: 28px; /* a little bigger than paragraph text */
+}
 
 .divStoryTitle  a:hover, .divSiteTitle a:hover, .divPagination a:hover {
 	text-decoration: underline;
-	}
+}
 
 #idStories .divStory .divStoryTitle {
     font-size: 22px;
@@ -43,4 +48,11 @@ a {
   max-width: 100%; /* Scale down if too large */
   height: auto;    /* Maintain aspect ratio */
   display: block;  /* Remove inline spacing */
+}
+
+/* Style blockquotes */
+.divStory blockquote {
+  border-left: 1px solid #000;
+  margin-left: 0;
+  padding-left: 20px;
 }
