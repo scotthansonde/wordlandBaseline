@@ -25,14 +25,15 @@ add_action('after_setup_theme', 'wordland_setup');
  * Enqueue scripts and styles.
  */
 function wordland_enqueue_scripts() {
-	// Enqueue local fonts
-	wp_enqueue_style('wordland-fonts', get_template_directory_uri() . '/fonts/fonts.css', array(), '1.0.0');
+	// Enqueue Google Fonts
+	wp_enqueue_style('google-font-ubuntu', 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700', array());
+	wp_enqueue_style('google-font-rancho', 'https://fonts.googleapis.com/css?family=Rancho', array());
+
+	// Enqueue external baseline playground styles
+	wp_enqueue_style('baseline-playground', 'https://s3.amazonaws.com/scripting.com/code/baselineplayground/styles.css', array());
 
 	// Enqueue theme stylesheet
-	wp_enqueue_style('wordland-style', get_stylesheet_uri());
-
-	// Enqueue additional stylesheets
-	wp_enqueue_style('wordland-additional', get_template_directory_uri() . '/css/additional.css', array('wordland-style'), '1.0.0');
+	wp_enqueue_style('wordland-style', get_stylesheet_uri(), array('baseline-playground'));
 
 	wp_enqueue_script(
 		'load-more-posts',
