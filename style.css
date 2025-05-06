@@ -15,6 +15,14 @@
 /* Note that we link to the baselinePlayground styles.css file in functions.php */
 
 /* These are additional styles */
+
+.divSiteTitle {
+  line-height: 1.1;
+}
+.divStoryTitle {
+  line-height: 1.0;
+}
+
 a {
 	text-decoration: none;
 	cursor: pointer;
