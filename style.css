@@ -34,9 +34,10 @@ a {
 	}
 
 #idStories .divStory .divStoryTitle {
-    margin-top:1.8em
+    font-size: 22px;
+    margin-top: 50px;
+}
 
-	}
 /* Constrain images in posts */
 .divStory p img {
   max-width: 100%; /* Scale down if too large */
