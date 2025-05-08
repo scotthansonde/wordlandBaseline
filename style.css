@@ -56,3 +56,33 @@ a {
   margin-left: 0;
   padding-left: 20px;
 }
+
+
+/* Social Icons */
+.divFooterSocialMenu {
+  text-align: center;
+  margin: 1.1em 0;
+}
+.divFooterSocialMenu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.divFooterSocialMenu li {
+  display: inline-block;
+  margin: 0 0.25em;
+}
+.divFooterSocialMenu a {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+.divFooterSocialMenu svg {
+  width: 1.0em;
+  height: 1.0em;
+  fill: black;
+}
+.screen-reader-text {
+  position: absolute;
+  left: -9999px;
+}

@@ -3,6 +3,8 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
+require_once get_template_directory() . '/inc/social-icons.php';
+
 /**
  * Theme functions and definitions
  *
