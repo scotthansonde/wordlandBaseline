@@ -27,8 +27,8 @@
 	<?php endif; ?>
 	<div class="divStoryBody">
 		<?php the_content(); ?>
-		<!-- Comments disabled by default-->
-		<?php if (is_single() && get_theme_mod('baseline_show_comments', true)) : ?>
+		<!-- Comments disabled by default, can be enabled in Customizer -->
+		<?php if (is_single() && get_theme_mod('baseline_show_comments', false)) : ?>
 			<?php if (comments_open() || get_comments_number()) : ?>
 				<div class="divComments">
 					<?php comments_template(); ?>
