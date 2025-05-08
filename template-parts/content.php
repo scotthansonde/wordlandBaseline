@@ -27,14 +27,22 @@
 	<?php endif; ?>
 	<div class="divStoryBody">
 		<?php the_content(); ?>
+		<!-- Comments disabled by default-->
+		<?php if (is_single() && get_theme_mod('wordland_show_comments', true)) : ?>
+			<?php if (comments_open() || get_comments_number()) : ?>
+				<div class="divComments">
+					<?php comments_template(); ?>
+				</div>
+			<?php endif; ?>
+		<?php endif; ?>
 	</div>
 	<?php if (is_single()) : ?>
 		<?php $categories = get_filtered_categories(); ?>
 		<?php if ($categories) : ?>
 			<div class="divCategories">
 				Categories: <?php echo join(', ', array_map(function ($cat) {
-						return $cat->name;
-					}, $categories)); ?>.
+								return $cat->name;
+							}, $categories)); ?>.
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>

@@ -22,6 +22,39 @@ function wordland_setup() {
 add_action('after_setup_theme', 'wordland_setup');
 
 /**
+ * Sets up customize options
+ */
+
+function wordland_customize_register($wp_customize) {
+
+	// Section: Theme Options
+	$wp_customize->add_section('wordland_options', [
+		'title'    => __('Baseline Theme Options', 'wordland'),
+		'priority' => 30,
+	]);
+
+	// Setting: Show Comments
+	$wp_customize->add_setting('wordland_show_comments', [
+		'default'           => false,
+		'sanitize_callback' => 'wordland_sanitize_checkbox',
+	]);
+
+	$wp_customize->add_control('wordland_show_comments', [
+		'label'    => __('Show Comments on Posts', 'wordland'),
+		'section'  => 'wordland_options',
+		'type'     => 'checkbox',
+	]);
+}
+add_action('customize_register', 'wordland_customize_register');
+
+// Sanitize checkboxes
+function wordland_sanitize_checkbox($checked) {
+	return (isset($checked) && $checked === true) ? true : false;
+}
+
+
+
+/**
  * Enqueue scripts and styles.
  */
 function wordland_enqueue_scripts() {
