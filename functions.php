@@ -46,6 +46,16 @@ function control_jetpack_features() {
     // Control related posts
     if ($disable_related) {
         add_filter('jetpack_relatedposts_enabled', '__return_false', 100);
+        add_filter('jetpack_enable_related_posts', '__return_false', 100);
+        // WordPress.com specific filters
+        add_filter('jp_relatedposts_enabled', '__return_false', 100);
+        add_filter('wpcom_disable_related_posts', '__return_true', 100);
+
+        // Remove the related posts stylesheet
+        add_action('wp_enqueue_scripts', function() {
+            wp_dequeue_style('jetpack_related-posts');
+            wp_deregister_style('jetpack_related-posts');
+        }, 100);
     }
 }
 add_action('init', 'control_jetpack_features');
