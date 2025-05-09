@@ -14,6 +14,11 @@
 
 /* Note that we link to the baselinePlayground styles.css file in functions.php */
 
+/* wordpress.com is overriding the text-decorator for title. Set it back to none. */
+:root :where(a:where(:not(.wp-element-button))) {
+text-decoration: none;
+}
+
 /* These are additional styles */
 
 .divSiteTitle {
