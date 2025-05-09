@@ -23,6 +23,33 @@ function baseline_setup() {
 }
 add_action('after_setup_theme', 'baseline_setup');
 
+// Control Jetpack features
+function control_jetpack_features() {
+    // Get settings
+    $disable_sharing = get_theme_mod('baseline_disable_sharing', true);
+    $disable_likes = get_theme_mod('baseline_disable_likes', true);
+    $disable_related = get_theme_mod('baseline_disable_related', true);
+    
+    // Control sharing
+    if ($disable_sharing) {
+        add_filter('sharing_show', '__return_false', 100);
+        add_filter('jetpack_sharing_show', '__return_false', 100);
+        add_filter('jetpack_sharing_display', '__return_false', 100);
+    }
+    
+    // Control likes
+    if ($disable_likes) {
+        add_filter('wpl_is_likes_visible', '__return_false', 100);
+        add_filter('jetpack_likes_enabled', '__return_false', 100);
+    }
+    
+    // Control related posts
+    if ($disable_related) {
+        add_filter('jetpack_relatedposts_enabled', '__return_false', 100);
+    }
+}
+add_action('init', 'control_jetpack_features');
+
 /**
  * Sets up customize options
  */
@@ -41,8 +68,43 @@ function baseline_customize_register($wp_customize) {
 		'sanitize_callback' => 'baseline_sanitize_checkbox',
 	]);
 
+	// Settings: Jetpack Features
+	$wp_customize->add_setting('baseline_disable_sharing', [
+		'default'           => true,
+		'sanitize_callback' => 'baseline_sanitize_checkbox',
+	]);
+
+	$wp_customize->add_setting('baseline_disable_likes', [
+		'default'           => true,
+		'sanitize_callback' => 'baseline_sanitize_checkbox',
+	]);
+
+	$wp_customize->add_setting('baseline_disable_related', [
+		'default'           => true,
+		'sanitize_callback' => 'baseline_sanitize_checkbox',
+	]);
+
 	$wp_customize->add_control('baseline_show_comments', [
 		'label'    => __('Show Comments on Posts', 'baseline'),
+		'section'  => 'baseline_options',
+		'type'     => 'checkbox',
+	]);
+
+	// Controls: Jetpack Features
+	$wp_customize->add_control('baseline_disable_sharing', [
+		'label'    => __('Disable Jetpack Sharing Buttons', 'baseline'),
+		'section'  => 'baseline_options',
+		'type'     => 'checkbox',
+	]);
+
+	$wp_customize->add_control('baseline_disable_likes', [
+		'label'    => __('Disable Jetpack Likes', 'baseline'),
+		'section'  => 'baseline_options',
+		'type'     => 'checkbox',
+	]);
+
+	$wp_customize->add_control('baseline_disable_related', [
+		'label'    => __('Disable Jetpack Related Posts', 'baseline'),
 		'section'  => 'baseline_options',
 		'type'     => 'checkbox',
 	]);
