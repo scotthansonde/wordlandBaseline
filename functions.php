@@ -54,25 +54,9 @@ function control_jetpack_features() {
 		function baseline_disable_related_posts($options) {
 			$options['enabled'] = false;
 			$options['show_headline'] = false;
-			$options['show_thumbnails'] = false;
-			$options['show_date'] = false;
-			$options['show_context'] = false;
 			return $options;
 		}
 		add_filter('jetpack_relatedposts_filter_options', 'baseline_disable_related_posts', 100);
-
-		// Add CSS to hide any remaining related posts elements
-		add_action('wp_head', function() {
-			echo '<style>
-				.jp-relatedposts,
-				.jp-relatedposts-headline,
-				.jp-relatedposts-items,
-				div#jp-relatedposts,
-				div#jp-relatedposts h3.jp-relatedposts-headline {
-					display: none !important;
-				}
-			</style>';
-		});
 
 		// Remove the related posts stylesheet
 		add_action('wp_enqueue_scripts', function () {
