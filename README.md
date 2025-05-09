@@ -2,7 +2,7 @@
 
 A WordPress theme under development for [WordLand](https://wordland.social/). It is
 inspired by the [Retrospect](https://wordpress.com/theme/retrospect)
-theme by Automatic. Retrospect is distributed under the GNU General Public License v2 or later.
+theme by Automattic. Retrospect is distributed under the GNU General Public License v2 or later.
 
 WordLand Baseline has only been tested on a self-hosted WordPress site and
 not at wordpress.com. When finished it will become a full-fledged WordPress theme.
