@@ -1,21 +1,27 @@
 # WordLand Baseline theme for WordPress
 
-A WordPress theme under development for [WordLand](https://wordland.social/). It is
-inspired by the [Retrospect](https://wordpress.com/theme/retrospect)
-theme by Automattic. Retrospect is distributed under the GNU General Public License v2 or later.
+WordLand Baseline is a WordPress theme designed to work well for sites written with [WordLand](https://wordland.social/).
 
-WordLand Baseline has only been tested on a self-hosted WordPress site and
-not at wordpress.com. When finished it will become a full-fledged WordPress theme.
+It uses styles from [baselinePlayground](https://github.com/scripting/baselinePlayground) by 
+[Dave Winer](http://scripting.com/). It is inspired by the [Retrospect](https://wordpress.com/theme/retrospect)
+theme by Automattic.
+
+WordLand Baseline under development and does not yet support all WordPress features.
 
 ## How to use while under development
 
 1. Download and install the Wordland Baseline theme
-   - Download as a Zip file with the "Code" buttom at the [GitHub repository](https://github.com/scotthansonde/wordlandBaseline)
-   - Upload to your site under Appearance > Themes > Add Themes > Upload Theme
-   - Activate WordLand Baseline from Appearance > Themes
+   - Download as a zip file with the "Code" buttom at the [GitHub repository](https://github.com/scotthansonde/wordlandBaseline)
+   - For self-hosted sites
+     - Upload under Appearance > Themes > Add Themes > Upload Theme
+     - Activate WordLand Baseline from Appearance > Themes
+   - For WordPress.com sites 
+     - In the dashboard of your site go to Appearance > Themes.
+     - If there will a button "Install new theme" at the upper right. Click it. 
+       - If your account cannot install new themes, this button will not appear. You will need to upgrade your WordPress.com account.
+     - Choose the zip file you just downloaded, and Install Now.
+     - The page "Installing theme from uploaded file" should appear. Clicking "Activate" will activate the theme.
 
-WordLand Baseline is now a stand-alone theme and no longer depends on Retrospect. It is currently a classic theme,
-but will be converted to a block theme in the future. It does not yet support all features of WordPress.
 
 ## Copyright
 
@@ -32,9 +38,3 @@ This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 GNU General Public License for more details.
-
-## Attributions
-
-**Based on:**
-- Retrospect Theme (C) 2025 Automattic — [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
-- Retrospect is based on Assembler Theme by Automattic — [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html)
