@@ -6,7 +6,7 @@ It uses styles from [baselinePlayground](https://github.com/scripting/baselinePl
 [Dave Winer](http://scripting.com/). It is inspired by the [Retrospect](https://wordpress.com/theme/retrospect)
 theme by Automattic.
 
-WordLand Baseline under development and does not yet support all WordPress features.
+WordLand Baseline is under development and does not yet support all WordPress features.
 
 ## How to use while under development
 
