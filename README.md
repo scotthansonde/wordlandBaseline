@@ -23,7 +23,7 @@ WordLand Baseline under development and does not yet support all WordPress featu
      - The page "Installing theme from uploaded file" should appear. Clicking "Activate" will activate the theme.
 
 
-## Copyright
+## Copyright 
 
 WordLand Baseline theme (C) 2025 Scott Hanson
 This theme is licensed under the
