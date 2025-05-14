@@ -1,22 +1,25 @@
 /*
- Theme Name:     WordLand Baseline
- Theme URI:      https://github.com/scotthansonde/wordlandBaseline
- Description:    A classic baseline theme for WordLand inspired by Retrospect
- Author:         Scott Hanson
- Author URI:     https://wordland.shanson.de
- Version:        0.0.6
- License: GNU General Public License v2 or later
- License URI: https://www.gnu.org/licenses/gpl-2.0.html
- Text Domain: wordland-baseline
+ Theme Name:        WordLand Baseline
+ Theme URI:         https://github.com/scotthansonde/wordlandBaseline
+ Description:       A classic baseline theme for WordLand inspired by Retrospect
+ Author:            Scott Hanson
+ Author URI:        https://wordland.shanson.de
+ Version:           0.1.0
+ Requires at least: 6.7
+ Tested up to:      6.8.1
+ Requires PHP:      8.0
+ License:           GNU General Public License v2 or later
+ License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ Text Domain:       wordland-baseline
 */
 
 /* You can add custom CSS below */
 
 /* Note that we link to the baselinePlayground styles.css file in functions.php */
 
-/* wordpress.com is overriding the text-decorator for title. Set it back to none. */
+/* WordPress.com overrides the text-decorator for title. Set it back to none. */
 :root :where(a:where(:not(.wp-element-button))) {
-text-decoration: none;
+  text-decoration: none;
 }
 
 /* These are additional styles */
