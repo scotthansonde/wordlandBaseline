@@ -1,18 +1,20 @@
 # WordLand Baseline theme for WordPress
 
-WordLand Baseline is a WordPress theme designed to work well for sites written with WordLand.
+WordLand Baseline is a WordPress theme designed to work well for sites written with [WordLand](https://wordland.social/).
 
-About the Baseline theme.
+Scripting News: [About the Baseline theme](http://scripting.com/2025/05/14/115252.html).
 
-It uses styles from baselinePlayground by Dave Winer. It is inspired by the Retrospect theme by Automattic.
+It uses styles from [baselinePlayground](https://github.com/scripting/baselinePlayground) by 
+[Dave Winer](http://scripting.com/). It is inspired by the [Retrospect](https://wordpress.com/theme/retrospect)
+theme by Automattic.
 
 ## How to install the preview release
 
 ### For WordPress.com sites
 
-You must have a business plan at WordPress.com in order to install Baseline.
+You must have a [business plan](https://wordpress.com/plans) at WordPress.com in order to install Baseline.
 
-1.  Download this file.
+1.  Download [this file](https://github.com/scotthansonde/wordlandBaseline/archive/refs/tags/v0.1.0.zip).
 2.  In the dashboard of your site go to Appearance > Themes.
 3.  If there is a button that says "Install new theme" click it. (The button is only there for business users.)
 4.  Choose the zip file you just downloaded, and Install Now.
@@ -20,7 +22,7 @@ You must have a business plan at WordPress.com in order to install Baseline.
 
 ### For self-hosted sites
 
-1.  Download this file.
+1.  Download [this file](https://github.com/scotthansonde/wordlandBaseline/archive/refs/tags/v0.1.0.zip).
 2.  In the dashboard of your site go to Appearance > Themes.
 3.  Click the "Add Theme" button, then the "Upload Theme" button.
 4.  Choose the zip file you just downloaded, and Install Now.
@@ -37,7 +39,8 @@ You must have a business plan at WordPress.com in order to install Baseline.
 ## Copyright
 
 WordLand Baseline theme (C) 2025 Scott Hanson
-This theme is licensed under the GPLv2 or later.
+This theme is licensed under the
+[GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html).
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option) any later version.
 
