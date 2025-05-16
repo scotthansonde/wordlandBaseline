@@ -41,8 +41,8 @@
 		<?php if ($categories) : ?>
 			<div class="divCategories">
 				Categories: <?php echo join(', ', array_map(function ($cat) {
-								return $cat->name;
-							}, $categories)); ?>.
+							return '<a href="' . esc_url(get_category_feed_link($cat->term_id)) . '">' . esc_html($cat->name) . '</a>';
+						}, $categories)); ?>.
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
