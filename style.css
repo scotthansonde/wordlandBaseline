@@ -52,7 +52,7 @@ a {
 }
 
 /* Constrain images in posts */
-.divStory p img {
+.divStory p img, .divFeaturedImage img {
   max-width: 100%; /* Scale down if too large */
   height: auto;    /* Maintain aspect ratio */
   display: block;  /* Remove inline spacing */

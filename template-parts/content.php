@@ -25,7 +25,20 @@
 			<?php echo get_the_date(); ?> by <?php echo get_the_author_meta('first_name') . ' ' . get_the_author_meta('last_name'); ?>
 		</div>
 	<?php endif; ?>
+
 	<div class="divStoryBody">
+		<?php if (has_post_thumbnail()) : ?>
+			<div class="divFeaturedImage">
+				<?php if (is_home() || is_archive()) : ?>
+					<a href="<?php the_permalink(); ?>">
+						<?php the_post_thumbnail('large', array('class' => 'featuredImage')); ?>
+					</a>
+				<?php else : ?>
+					<?php the_post_thumbnail('large', array('class' => 'featuredImage')); ?>
+				<?php endif; ?>
+			</div>
+		<?php endif; ?>
+
 		<?php the_content(); ?>
 		<!-- Comments disabled by default, can be enabled in Customizer -->
 		<?php if (is_single() && get_theme_mod('baseline_show_comments', false)) : ?>
@@ -41,8 +54,8 @@
 		<?php if ($categories) : ?>
 			<div class="divCategories">
 				Categories: <?php echo join(', ', array_map(function ($cat) {
-							return '<a href="' . esc_url(get_category_feed_link($cat->term_id)) . '">' . esc_html($cat->name) . '</a>';
-						}, $categories)); ?>.
+								return '<a href="' . esc_url(get_category_feed_link($cat->term_id)) . '">' . esc_html($cat->name) . '</a>';
+							}, $categories)); ?>.
 			</div>
 		<?php endif; ?>
 	<?php endif; ?>
