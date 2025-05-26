@@ -211,3 +211,39 @@ function baseline_get_last_modified_date() {
 	}
 	return '';
 }
+
+/**
+ * Remove og:image from Open Graph tags if it matches the site icon
+ **/
+add_filter(
+	'jetpack_open_graph_tags',
+	function ($tags) {
+		// If we're not looking at a single post, bail early.
+		if (! is_single()) {
+			return $tags;
+		}
+
+		// If we have an image, check if that's the site icon.
+		if (
+			! empty($tags['og:image'])
+			&& has_site_icon()
+		) {
+			$site_icon = wp_get_attachment_image_src(get_option('site_icon'), 'full');
+
+			// If our OG image is the site icon, remove it.
+			if (
+				is_array($site_icon)
+				&& $site_icon[0] === $tags['og:image']
+			) {
+				unset($tags['og:image']);
+				unset($tags['og:image:width']);
+				unset($tags['og:image:height']);
+				unset($tags['og:image:alt']);
+				unset($tags['twitter:image']);
+				unset($tags['twitter:image.alt']);
+			}
+		}
+		return $tags;
+	},
+	99
+);
