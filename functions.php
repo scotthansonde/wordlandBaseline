@@ -159,7 +159,8 @@ function baseline_enqueue_scripts() {
 
 	wp_localize_script('load-more-posts', 'wpApiSettings', [
 		'root'  => esc_url_raw(rest_url()),
-		'nonce' => wp_create_nonce('wp_rest')
+		'nonce' => wp_create_nonce('wp_rest'),
+		'postsPerPage' => get_option('posts_per_page')
 	]);
 }
 add_action('wp_enqueue_scripts', 'baseline_enqueue_scripts');

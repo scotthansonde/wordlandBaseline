@@ -25,7 +25,7 @@ function loadMorePosts() {
 
   loading = true;
 
-  fetch(`${wpApiSettings.root}wp/v2/posts?page=${page}&per_page=6&_embed=true`, {
+  fetch(`${wpApiSettings.root}wp/v2/posts?page=${page}&per_page=${wpApiSettings.postsPerPage}&_embed=true`, {
     headers: {
       'X-WP-Nonce': wpApiSettings.nonce
     }
@@ -69,6 +69,13 @@ function loadMorePosts() {
           </div>
           ` : ''}
           <div class="divStoryBody">
+            ${post._embedded['wp:featuredmedia'] ? `
+              <div class="divFeaturedImage">
+                <a href="${post.link}">
+                  <img src="${post._embedded['wp:featuredmedia'][0].source_url}" class="featuredImage" alt="${post._embedded['wp:featuredmedia'][0].alt_text || ''}">
+                </a>
+              </div>
+            ` : ''}
             ${post.content.rendered}
           </div>
           ${categories.length ? `
