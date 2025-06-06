@@ -85,6 +85,12 @@ function baseline_customize_register($wp_customize) {
 		'sanitize_callback' => 'baseline_sanitize_checkbox',
 	]);
 
+	// Setting: Disable Pagination
+	$wp_customize->add_setting('baseline_disable_pagination', [
+		'default'           => true,
+		'sanitize_callback' => 'baseline_sanitize_checkbox',
+	]);
+
 	// Settings: Jetpack Features
 	$wp_customize->add_setting('baseline_disable_sharing', [
 		'default'           => true,
@@ -125,6 +131,13 @@ function baseline_customize_register($wp_customize) {
 		'section'  => 'baseline_options',
 		'type'     => 'checkbox',
 	]);
+
+	// Control: Disable Pagination
+	$wp_customize->add_control('baseline_disable_pagination', [
+		'label'    => __('Disable Pagination on Home Page', 'baseline'),
+		'section'  => 'baseline_options',
+		'type'     => 'checkbox',
+	]);
 }
 add_action('customize_register', 'baseline_customize_register');
 
@@ -148,20 +161,6 @@ function baseline_enqueue_scripts() {
 
 	// Enqueue theme stylesheet
 	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array('baseline-playground'));
-
-	wp_enqueue_script(
-		'load-more-posts',
-		get_template_directory_uri() . '/js/load-more.js',
-		['jquery'],
-		null,
-		true
-	);
-
-	wp_localize_script('load-more-posts', 'wpApiSettings', [
-		'root'  => esc_url_raw(rest_url()),
-		'nonce' => wp_create_nonce('wp_rest'),
-		'postsPerPage' => get_option('posts_per_page')
-	]);
 }
 add_action('wp_enqueue_scripts', 'baseline_enqueue_scripts');
 

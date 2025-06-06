@@ -8,23 +8,49 @@
 
 get_header(); ?>
 
-<?php if (have_posts()) : ?>
+<?php
+// If pagination is disabled, show current and previous month posts
+if (get_theme_mod('baseline_disable_pagination', true)) {
+	$current_time = current_time('mysql');
+	$last_month = date('Y-m-01 00:00:00', strtotime('-1 month', strtotime($current_time)));
+
+	$args = array(
+		'post_type' => 'post',
+		'posts_per_page' => -1,
+		'date_query' => array(
+			array(
+				'after' => $last_month,
+				'inclusive' => true,
+			),
+		),
+	);
+	$query = new WP_Query($args);
+} else {
+	$query = $GLOBALS['wp_query'];
+}
+
+if ($query->have_posts()) : ?>
 	<div id="idStories">
 		<?php
-		$query = new WP_Query([
-			'post_type' => 'post',
-			'posts_per_page' => get_option('posts_per_page'),
-		]);
-		if ($query->have_posts()) :
-			while ($query->have_posts()) : $query->the_post();
-				get_template_part('template-parts/content', get_post_type());
-			endwhile;
-			wp_reset_postdata();
-		endif;
+		while ($query->have_posts()) : $query->the_post();
+			get_template_part('template-parts/content', get_post_type());
+		endwhile;
+		wp_reset_postdata();
 		?>
 	</div>
 
-	<div id="idScrollTrigger" class="divPagination" style="text-align: center;"></div>
+	<?php if (!get_theme_mod('baseline_disable_pagination', true)) : ?>
+		<div class="divPagination">
+			<?php
+			the_posts_pagination(array(
+				'mid_size' => 2,
+				'prev_text' => __('Previous Page', 'wordlandbaseline'),
+				'next_text' => __('Next Page', 'wordlandbaseline'),
+				'screen_reader_text' => __('Posts navigation', 'wordlandbaseline')
+			));
+			?>
+		</div>
+	<?php endif; ?>
 
 <?php else : ?>
 	<div class="divStory">

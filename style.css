@@ -22,6 +22,41 @@
   text-decoration: none;
 }
 
+/* Pagination styles */
+.divPagination {
+    margin: 2em 0;
+}
+.divPagination a {
+    text-decoration: underline;
+}
+
+.divPagination .nav-links {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divPagination .page-numbers {
+    margin: 0 0.25ch;
+}
+
+.divPagination .prev {
+    margin-right: auto;
+    margin-left: 0;
+}
+
+.divPagination .next {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+
+
+.divPagination .page-numbers:hover:not(.current) {
+    background-color: #f5f5f5;
+}
+
 /* These are additional styles */
 
 .divSiteTitle {
