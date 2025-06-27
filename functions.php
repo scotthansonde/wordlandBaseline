@@ -173,7 +173,8 @@ function baseline_register_rest_fields() {
 			$author_id = $post['author'];
 			return [
 				'first_name' => get_user_meta($author_id, 'first_name', true),
-				'last_name'  => get_user_meta($author_id, 'last_name', true)
+				'last_name'  => get_user_meta($author_id, 'last_name', true),
+				'website'    => get_the_author_meta('user_url', $author_id)
 			];
 		}
 	]);
@@ -210,6 +211,38 @@ function baseline_get_last_modified_date() {
 		return get_the_modified_date('n/j/y; g:i:s A', $post);
 	}
 	return '';
+}
+
+/**
+ * Display author name with website link if available
+ *
+ * @param int|null $author_id Optional. User ID of the author. Default is current post author.
+ * @param bool $echo Optional. Whether to echo or return the result. Default true.
+ * @return string|void Author name with or without link
+ */
+function baseline_author_website_link($author_id = null, $echo = true) {
+	if (null === $author_id) {
+		$author_id = get_the_author_meta('ID');
+	}
+	
+	$first_name = get_user_meta($author_id, 'first_name', true);
+	$last_name = get_user_meta($author_id, 'last_name', true);
+	$author_name = $first_name . ' ' . $last_name;
+	
+	$website = get_the_author_meta('user_url', $author_id);
+	
+	$output = '';
+	if (!empty($website)) {
+		$output = '<a href="' . esc_url($website) . '">' . $author_name . '</a>';
+	} else {
+		$output = $author_name;
+	}
+	
+	if ($echo) {
+		echo $output;
+	} else {
+		return $output;
+	}
 }
 
 /**
