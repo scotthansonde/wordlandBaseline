@@ -32,3 +32,6 @@ yarn-error.log
 .sass-cache/
 *.css.map
 *.js.map
+
+# Temporary scripts
+import-feed.php

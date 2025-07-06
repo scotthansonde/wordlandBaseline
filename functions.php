@@ -224,20 +224,20 @@ function baseline_author_website_link($author_id = null, $echo = true) {
 	if (null === $author_id) {
 		$author_id = get_the_author_meta('ID');
 	}
-	
+
 	$first_name = get_user_meta($author_id, 'first_name', true);
 	$last_name = get_user_meta($author_id, 'last_name', true);
 	$author_name = $first_name . ' ' . $last_name;
-	
+
 	$website = get_the_author_meta('user_url', $author_id);
-	
+
 	$output = '';
 	if (!empty($website)) {
 		$output = '<a href="' . esc_url($website) . '">' . $author_name . '</a>';
 	} else {
 		$output = $author_name;
 	}
-	
+
 	if ($echo) {
 		echo $output;
 	} else {
@@ -280,3 +280,35 @@ add_filter(
 	},
 	99
 );
+
+function get_domain_from_url($url) {
+	// Parse the host from the URL
+	$host = parse_url($url, PHP_URL_HOST);
+
+	if (!$host) {
+		return false; // Invalid URL
+	}
+
+	// Remove 'www.' or other common subdomains
+	$host_parts = explode('.', $host);
+
+	// Handle cases like subdomain.example.co.uk
+	$count = count($host_parts);
+
+	if ($count >= 2) {
+		// Return the last two parts by default
+		$domain = $host_parts[$count - 2] . '.' . $host_parts[$count - 1];
+
+		// Handle known 2-part TLDs (like co.uk, com.au)
+		$two_part_tlds = ['co.uk', 'com.au', 'org.uk', 'gov.uk', 'co.jp'];
+		$tld = $host_parts[$count - 2] . '.' . $host_parts[$count - 1];
+
+		if (in_array($tld, $two_part_tlds) && $count >= 3) {
+			$domain = $host_parts[$count - 3] . '.' . $tld;
+		}
+
+		return $domain;
+	}
+
+	return $host;
+}
