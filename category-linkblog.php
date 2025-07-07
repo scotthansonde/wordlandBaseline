@@ -8,13 +8,23 @@
 
 get_header(); ?>
 
-<div class="divStory">
+<!-- <div class="divStory">
 	<div class="divStoryTitle">
 		Linkblog
 	</div>
-</div>
+</div> -->
 
-<?php if (have_posts()) : ?>
+<?php
+// Override the main query to show all posts
+$temp = $wp_query;
+$wp_query = null;
+$wp_query = new WP_Query(array(
+	'post_type' => 'post',
+	'posts_per_page' => -1,
+	'category_name' => 'linkblog'
+));
+
+if (have_posts()) : ?>
 	<div id="idStories">
 		<?php
 		while (have_posts()) : the_post();
@@ -22,20 +32,16 @@ get_header(); ?>
 
 		<?php
 		endwhile;
-		wp_reset_postdata();
 		?>
 	</div>
 
-	<div class="divPagination">
-		<?php
-		the_posts_pagination(array(
-			'mid_size' => 2,
-			'prev_text' => __('Previous Page', 'wordlandbaseline'),
-			'next_text' => __('Next Page', 'wordlandbaseline'),
-			'screen_reader_text' => __('Posts navigation', 'wordlandbaseline')
-		));
-		?>
-	</div>
+	<!-- Pagination removed to show all posts -->
+
+	<?php
+	// Restore original query
+	wp_reset_postdata();
+	$wp_query = $temp;
+	?>
 
 <?php else : ?>
 	<div class="divStory">
