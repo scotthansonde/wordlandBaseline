@@ -14,6 +14,7 @@ if (get_theme_mod('baseline_disable_pagination', true)) {
 	$current_time = current_time('mysql');
 	$last_month = date('Y-m-01 00:00:00', strtotime('-1 month', strtotime($current_time)));
 
+	// First try to get posts from current and previous month
 	$args = array(
 		'post_type' => 'post',
 		'posts_per_page' => -1,
@@ -25,6 +26,16 @@ if (get_theme_mod('baseline_disable_pagination', true)) {
 		),
 	);
 	$query = new WP_Query($args);
+	
+	// If we have fewer than 5 posts, get the 5 most recent posts regardless of date
+	if ($query->post_count < 5) {
+		wp_reset_postdata();
+		$args = array(
+			'post_type' => 'post',
+			'posts_per_page' => 5,
+		);
+		$query = new WP_Query($args);
+	}
 } else {
 	$query = $GLOBALS['wp_query'];
 }
