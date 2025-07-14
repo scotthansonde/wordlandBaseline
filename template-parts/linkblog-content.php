@@ -7,8 +7,11 @@
 <div class="divStory">
 	<?php $has_title = get_the_title();
 
-	// Get the external URL custom field
-	$external_url = get_post_meta(get_the_ID(), 'external_url', true);
+	// Get the external URL from either wordland_linksTo or external_url custom field
+	$external_url = get_post_meta(get_the_ID(), 'wordland_linksTo', true);
+	if (empty($external_url)) {
+		$external_url = get_post_meta(get_the_ID(), 'external_url', true);
+	}
 
 	// Fallback to post permalink if no external URL
 	$link_url = $external_url ? esc_url($external_url) : get_permalink();

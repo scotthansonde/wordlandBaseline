@@ -312,3 +312,44 @@ function get_domain_from_url($url) {
 
 	return $host;
 }
+
+// Add customizer options for home page template
+add_action('customize_register', function ($wp_customize) {
+	// Add a section for our template options
+	$wp_customize->add_section('linkblog_template_options', array(
+		'title'    => __('Linkblog Template Options', 'linkblog-importer'),
+		'priority' => 120,
+	));
+
+	// Add setting for home page template choice
+	$wp_customize->add_setting('linkblog_home_template', array(
+		'default'           => 'default',
+		'sanitize_callback' => 'sanitize_key',
+		'transport'         => 'refresh',
+	));
+
+	// Add control for the setting
+	$wp_customize->add_control('linkblog_home_template', array(
+		'label'    => __('Home Page Template', 'linkblog-importer'),
+		'section'  => 'linkblog_template_options',
+		'type'     => 'radio',
+		'choices'  => array(
+			'default'  => __('Default (index.php)', 'linkblog-importer'),
+			'linkblog' => __('Linkblog Template (category-linkblog.php)', 'linkblog-importer'),
+		),
+	));
+});
+
+// Filter the home template based on customizer setting
+add_filter('home_template', function ($template) {
+	$home_template = get_theme_mod('linkblog_home_template', 'default');
+
+	if ($home_template === 'linkblog') {
+		$linkblog_template = locate_template('category-linkblog.php');
+		if ($linkblog_template) {
+			return $linkblog_template;
+		}
+	}
+
+	return $template;
+});
