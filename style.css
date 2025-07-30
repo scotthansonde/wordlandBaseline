@@ -141,3 +141,29 @@ a {
   position: absolute;
   left: -9999px;
 }
+
+/* Linkblog styles */
+
+.divLinkblogContainer .divLinkblogDay .divLinkblogDayTitle {
+    font-size: 25px;
+    margin-top: 40px;
+}
+.divLinkblogDay .divLinkblogDayTitle {
+	font-size: 32px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	letter-spacing: -0.04em;
+}
+.divLinkblogEntry {
+	margin-top: 25px;
+	font-size: 16px;
+    line-height: 24px;
+}
+.divLinkblogEntry p {
+	margin-bottom: 10px;
+}
+.divLinkblogEntry a {
+	color: #0088cc;
+	text-decoration: underline;
+	cursor: pointer;
+	}
