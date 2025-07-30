@@ -24,17 +24,31 @@ $wp_query = new WP_Query(array(
 	'category_name' => 'linkblog'
 ));
 
-if (have_posts()) : ?>
-	<div id="idStories">
-		<?php
-		while (have_posts()) : the_post();
-			get_template_part('template-parts/linkblog-content', get_post_type()); ?>
+if (have_posts()) :
+	echo '<div id="idStories">';
+	$current_day = '';
+	while (have_posts()) : the_post();
+		$post_day = get_the_date('l, F j, Y'); // Example: Saturday, July 5, 2025
+		if ($post_day !== $current_day) {
+			if ($current_day !== '') {
+				echo '</div>'; // Close previous day's div
+			}
+			echo '<div class="divStory">';
+			echo '<div class="divStoryTitle">' . esc_html($post_day) . '</div>';
+			$current_day = $post_day;
+		}
+
+?>
 
 		<?php
-		endwhile;
-		?>
+		get_template_part('template-parts/linkblog-content', get_post_type()); ?>
+
+	<?php
+	endwhile;
+	echo '</div>'; // Close final day's div
+	?>
 	</div>
-
+	</div>
 	<!-- Pagination removed to show all posts -->
 
 	<?php
