@@ -13,7 +13,7 @@ if (empty($external_url)) {
 }
 
 // Fallback to post permalink if no external URL
-$link_url = $external_url ? esc_url($external_url) : get_permalink();
+$link_url = $external_url ? esc_url($external_url) : ''
 ?>
 
 <div class="divLinkblogEntry">
