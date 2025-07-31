@@ -36,7 +36,6 @@ if (have_posts()) :
 	echo '</div>'; // Close final day's div
 ?>
 	</div>
-	</div>
 	<?php
 	// Restore original query
 	wp_reset_postdata();
