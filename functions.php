@@ -156,11 +156,11 @@ function baseline_enqueue_scripts() {
 	wp_enqueue_style('google-font-ubuntu', 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700', array());
 	wp_enqueue_style('google-font-rancho', 'https://fonts.googleapis.com/css?family=Rancho', array());
 
-	// Enqueue baseline playground styles
-	wp_enqueue_style('baseline-playground', get_template_directory_uri() . '/css/baselinePlayground.css', array());
-
 	// Enqueue theme stylesheet
 	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array('baseline-playground'));
+	// Enqueue baseline playground styles
+	wp_enqueue_style('baseline-playground', get_template_directory_uri() . '/css/baselinePlayground.css', array());
+	wp_enqueue_style('baseline-playground-scripting', 'https://s3.amazonaws.com/scripting.com/code/baselineplayground/styles.css?t=' . time(), array());
 }
 add_action('wp_enqueue_scripts', 'baseline_enqueue_scripts');
 
@@ -224,20 +224,20 @@ function baseline_author_website_link($author_id = null, $echo = true) {
 	if (null === $author_id) {
 		$author_id = get_the_author_meta('ID');
 	}
-	
+
 	$first_name = get_user_meta($author_id, 'first_name', true);
 	$last_name = get_user_meta($author_id, 'last_name', true);
 	$author_name = $first_name . ' ' . $last_name;
-	
+
 	$website = get_the_author_meta('user_url', $author_id);
-	
+
 	$output = '';
 	if (!empty($website)) {
 		$output = '<a href="' . esc_url($website) . '">' . $author_name . '</a>';
 	} else {
 		$output = $author_name;
 	}
-	
+
 	if ($echo) {
 		echo $output;
 	} else {
@@ -280,3 +280,76 @@ add_filter(
 	},
 	99
 );
+
+function get_domain_from_url($url) {
+	// Parse the host from the URL
+	$host = parse_url($url, PHP_URL_HOST);
+
+	if (!$host) {
+		return false; // Invalid URL
+	}
+
+	// Remove 'www.' or other common subdomains
+	$host_parts = explode('.', $host);
+
+	// Handle cases like subdomain.example.co.uk
+	$count = count($host_parts);
+
+	if ($count >= 2) {
+		// Return the last two parts by default
+		$domain = $host_parts[$count - 2] . '.' . $host_parts[$count - 1];
+
+		// Handle known 2-part TLDs (like co.uk, com.au)
+		$two_part_tlds = ['co.uk', 'com.au', 'org.uk', 'gov.uk', 'co.jp'];
+		$tld = $host_parts[$count - 2] . '.' . $host_parts[$count - 1];
+
+		if (in_array($tld, $two_part_tlds) && $count >= 3) {
+			$domain = $host_parts[$count - 3] . '.' . $tld;
+		}
+
+		return $domain;
+	}
+
+	return $host;
+}
+
+// Add customizer options for home page template
+add_action('customize_register', function ($wp_customize) {
+	// Add a section for our template options
+	$wp_customize->add_section('linkblog_template_options', array(
+		'title'    => __('Linkblog Template Options', 'linkblog-importer'),
+		'priority' => 120,
+	));
+
+	// Add setting for home page template choice
+	$wp_customize->add_setting('linkblog_home_template', array(
+		'default'           => 'default',
+		'sanitize_callback' => 'sanitize_key',
+		'transport'         => 'refresh',
+	));
+
+	// Add control for the setting
+	$wp_customize->add_control('linkblog_home_template', array(
+		'label'    => __('Home Page Template', 'linkblog-importer'),
+		'section'  => 'linkblog_template_options',
+		'type'     => 'radio',
+		'choices'  => array(
+			'default'  => __('Default (index.php)', 'linkblog-importer'),
+			'linkblog' => __('Linkblog Template (category-linkblog.php)', 'linkblog-importer'),
+		),
+	));
+});
+
+// Filter the home template based on customizer setting
+add_filter('home_template', function ($template) {
+	$home_template = get_theme_mod('linkblog_home_template', 'default');
+
+	if ($home_template === 'linkblog') {
+		$linkblog_template = locate_template('category-linkblog.php');
+		if ($linkblog_template) {
+			return $linkblog_template;
+		}
+	}
+
+	return $template;
+});
