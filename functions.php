@@ -160,7 +160,8 @@ function baseline_enqueue_scripts() {
 	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array('baseline-playground'));
 	// Enqueue baseline playground styles
 	wp_enqueue_style('baseline-playground', get_template_directory_uri() . '/css/baselinePlayground.css', array());
-	wp_enqueue_style('baseline-playground-scripting', 'https://s3.amazonaws.com/scripting.com/code/baselineplayground/styles.css?t=' . time(), array());
+	// Enqueue baseline playground styles from Scripting.com for development, comment out for production
+	// wp_enqueue_style('baseline-playground-scripting', 'https://s3.amazonaws.com/scripting.com/code/baselineplayground/styles.css?t=' . time(), array());
 }
 add_action('wp_enqueue_scripts', 'baseline_enqueue_scripts');
 
