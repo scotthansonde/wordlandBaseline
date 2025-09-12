@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
 }
 
 require_once get_template_directory() . '/inc/social-icons.php';
+require_once get_template_directory() . '/inc/content-links.php';
 
 /**
  * Theme functions and definitions

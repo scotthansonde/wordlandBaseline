@@ -40,7 +40,16 @@
 			</div>
 		<?php endif; ?>
 
-		<?php the_content(); ?>
+		<?php 
+		// Use our reusable function to append the link
+		$cleanup = wordland_append_external_link();
+		
+		// Display the content with our appended link
+		the_content();
+		
+		// Remove our filter if it was added
+		if ($cleanup) $cleanup();
+		?>
 		<!-- Comments disabled by default, can be enabled in Customizer -->
 		<?php if (is_single() && get_theme_mod('baseline_show_comments', false)) : ?>
 			<?php if (comments_open() || get_comments_number()) : ?>
