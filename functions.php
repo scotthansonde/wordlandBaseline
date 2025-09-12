@@ -147,7 +147,14 @@ function baseline_sanitize_checkbox($checked) {
 	return (isset($checked) && $checked === true) ? true : false;
 }
 
-
+/**
+ * Enqueue jQuery before any plugins are loaded
+ * This ensures jQuery is available for all plugin scripts
+ */
+function baseline_enqueue_jquery() {
+	wp_enqueue_script('jquery');
+}
+add_action('wp_enqueue_scripts', 'baseline_enqueue_jquery');
 
 /**
  * Enqueue scripts and styles.

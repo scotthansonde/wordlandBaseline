@@ -16,7 +16,12 @@
 <body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
 
-	<div class="divPageBody">
+	<?php
+	$has_blogroll = shortcode_exists('feedland-blogroll');
+	$is_index = is_home() || (is_front_page() && !is_page());
+	$add_blogroll_class = $has_blogroll && $is_index;
+	?>
+	<div class="divPageBody<?php echo $add_blogroll_class ? ' has-sidebar' : ''; ?>">
 		<div class="divPageTop">
 			<div class="divSiteTitle">
 				<?php if (!is_front_page() && !is_home()) : ?>
