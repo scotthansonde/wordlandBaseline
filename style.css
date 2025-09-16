@@ -200,7 +200,7 @@ a {
     text-align: center !important;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
 	.divContentWrapper.has-sidebar {
 		grid-template-columns: 1fr; /* Stack columns on mobile */
 		}
