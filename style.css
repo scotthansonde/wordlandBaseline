@@ -4,7 +4,7 @@
  Description:       A classic baseline theme for WordLand inspired by Retrospect
  Author:            Scott Hanson
  Author URI:        https://wordland.shanson.de
- Version:           0.2.4
+ Version:           0.2.4d
  Requires at least: 6.7
  Tested up to:      6.8.1
  Requires PHP:      8.0
@@ -169,21 +169,7 @@ a {
 	cursor: pointer;
 	}
 
-/* Content wrapper for grid layout */
-.divContentWrapper {
-	display: block; /* Default to single column */
-	}
 
-/* Apply grid layout only when sidebar exists */
-.divContentWrapper.has-sidebar {
-	display: grid;
-	grid-template-columns: 1fr 250px; /* Main content takes remaining space, sidebar is 250px */
-	gap: 20px; /* Space between columns */
-	}
-
-.divPageBody.has-sidebar {
-	width: 920px;
-	}
 
 /* Blogroll styles */
 
@@ -200,8 +186,29 @@ a {
     text-align: center !important;
 }
 
-@media screen and (max-width: 767px) {
-	.divContentWrapper.has-sidebar {
-		grid-template-columns: 1fr; /* Stack columns on mobile */
-		}
+
+/* Styles for grid layout */
+
+.divPageBody.has-sidebar {
+    width: clamp(100px, 100% - 48px, 920px);
+	/* width: 920px; */
+    max-width: 95%;
 	}
+
+.divContentWrapper {
+	display: block; /* Default to single column */
+	}
+
+/* Apply grid layout only when sidebar exists */
+.divContentWrapper.has-sidebar {
+	display: grid;
+    grid-template-columns: minmax(100px, 1fr); /* Stack columns on mobile */
+	}
+
+/* two columns on tablets and wider */
+@media screen and (min-width: 768px) {
+.divContentWrapper.has-sidebar {
+	grid-template-columns: minmax(100px, 1fr) 250px; /* Main content takes remaining space, sidebar is 250px */
+	gap: 10px; /* Space between columns */
+	}
+}
