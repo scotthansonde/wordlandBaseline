@@ -14,7 +14,7 @@ theme by Automattic.
 
 You must have a [business plan](https://wordpress.com/plans) at WordPress.com in order to install Baseline.
 
-1.  Download [this file](https://github.com/scotthansonde/wordlandBaseline/archive/refs/tags/v0.1.0.zip).
+1.  Download [the **Source code** (.zip) from latest release](https://github.com/scotthansonde/wordlandBaseline/releases).
 2.  In the dashboard of your site go to Appearance > Themes.
 3.  If there is a button that says "Install new theme" click it. (The button is only there for business users.)
 4.  Choose the zip file you just downloaded, and Install Now.
@@ -22,7 +22,7 @@ You must have a [business plan](https://wordpress.com/plans) at WordPress.com in
 
 ### For self-hosted sites
 
-1.  Download [this file](https://github.com/scotthansonde/wordlandBaseline/archive/refs/tags/v0.1.0.zip).
+1.  Download [the **Source code** (.zip) from latest release](https://github.com/scotthansonde/wordlandBaseline/releases).
 2.  In the dashboard of your site go to Appearance > Themes.
 3.  Click the "Add Theme" button, then the "Upload Theme" button.
 4.  Choose the zip file you just downloaded, and Install Now.
