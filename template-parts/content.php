@@ -6,24 +6,13 @@
 ?>
 <div class="divStory">
 	<?php $has_title = get_the_title(); ?>
-	<div class="divStoryTitle">
-		<?php if ($has_title) : ?>
+	<?php if ($has_title) : ?>
+		<div class="divStoryTitle">
 			<?php if (is_home() || is_archive()) : ?>
 				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 			<?php else : ?>
 				<?php the_title(); ?>
 			<?php endif; ?>
-		<?php else : ?>
-			<?php if (is_home() || is_archive()) : ?>
-				<a href="<?php the_permalink(); ?>"><?php echo get_the_date(); ?> by <span class="author-link"><?php baseline_author_website_link(); ?></span></a>
-			<?php else : ?>
-				<?php echo get_the_date(); ?> by <?php baseline_author_website_link(); ?>
-			<?php endif; ?>
-		<?php endif; ?>
-	</div>
-	<?php if ($has_title) : ?>
-		<div class="divLineUnderStoryTitle">
-			<?php echo get_the_date(); ?> by <?php baseline_author_website_link(); ?>
 		</div>
 	<?php endif; ?>
 
