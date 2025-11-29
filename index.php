@@ -46,9 +46,22 @@ get_header(); ?>
 	if ($query->have_posts()) : ?>
 		<div id="idStories">
 			<?php
+			$current_day = '';
 			while ($query->have_posts()) : $query->the_post();
+				$post_day = get_the_date('l, F j, Y'); // Example: Saturday, July 5, 2025
+				if ($post_day !== $current_day) {
+					if ($current_day !== '') {
+						echo '</div>'; // Close previous day's div
+					}
+					echo '<div class="divDayGroup">';
+					echo '<div class="divDayTitle"><a href="' . esc_url(get_day_link(get_the_date('Y'), get_the_date('m'), get_the_date('d'))) . '">' . esc_html($post_day) . '</a></div>';
+					$current_day = $post_day;
+				}
 				get_template_part('template-parts/content', get_post_type());
 			endwhile;
+			if ($current_day !== '') {
+				echo '</div>'; // Close final day's div
+			}
 			wp_reset_postdata();
 			?>
 		</div>

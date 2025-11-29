@@ -143,6 +143,43 @@ a {
   left: -9999px;
 }
 
+/* Day grouping styles (for main page) */
+
+.divDayGroup {
+    margin-bottom: 50px;
+}
+
+.divDayGroup .divDayTitle {
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 5px;
+    letter-spacing: -0.04em;
+    color: #000;
+}
+
+.divDayGroup .divDayTitle a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.divDayGroup .divDayTitle a:hover {
+    text-decoration: underline;
+}
+
+.divDayGroup:first-child .divDayTitle {
+    margin-top: 0;
+}
+
+.divDayGroup .divStory .divStoryTitle {
+    margin-top: 25px;
+    font-size: 22px;
+}
+
+.divDayGroup .divStory:first-of-type .divStoryTitle {
+    margin-top: 20px;
+}
+
 /* Linkblog styles */
 
 .divLinkblogContainer .divLinkblogDay .divLinkblogDayTitle {
