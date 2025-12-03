@@ -365,3 +365,29 @@ add_filter('home_template', function ($template) {
 
 	return $template;
 });
+
+// Filter the RSS feed to use the external URL for the <link> element, if available
+// Thanks to @jeherve (https://github.com/scotthansonde/wordlandBaseline/issues/49)
+add_filter(
+	'the_permalink_rss',
+	function ($permalink) {
+		global $wp_query;
+
+		$post_id = $wp_query->post->ID;
+		if (! $post_id) {
+			return $permalink;
+		}
+
+		// Get the external URL from the post meta.
+		$external_url = get_post_meta($post_id, 'wordland_linksTo', true);
+		if (empty($external_url)) {
+			$external_url = get_post_meta($post_id, 'external_url', true);
+		}
+
+		if (! empty($external_url)) {
+			return $external_url;
+		}
+
+		return $permalink;
+	}
+);
