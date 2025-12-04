@@ -5,6 +5,8 @@ if (!defined('ABSPATH')) {
 
 require_once get_template_directory() . '/inc/social-icons.php';
 require_once get_template_directory() . '/inc/content-links.php';
+require_once get_template_directory() . '/inc/customizer.php';
+require_once get_template_directory() . '/inc/jetpack-control.php';
 
 /**
  * Theme functions and definitions
@@ -23,129 +25,6 @@ function baseline_setup() {
 	add_theme_support('automatic-feed-links');
 }
 add_action('after_setup_theme', 'baseline_setup');
-
-// Control Jetpack features
-function control_jetpack_features() {
-	// Get settings
-	$disable_sharing = get_theme_mod('baseline_disable_sharing', true);
-	$disable_likes = get_theme_mod('baseline_disable_likes', true);
-	$disable_related = get_theme_mod('baseline_disable_related', true);
-
-	// Control sharing
-	if ($disable_sharing) {
-		add_filter('sharing_show', '__return_false', 100);
-		add_filter('jetpack_sharing_show', '__return_false', 100);
-		add_filter('jetpack_sharing_display', '__return_false', 100);
-	}
-
-	// Control likes
-	if ($disable_likes) {
-		add_filter('wpl_is_likes_visible', '__return_false', 100);
-		add_filter('jetpack_likes_enabled', '__return_false', 100);
-	}
-
-	// Control related posts
-	if ($disable_related) {
-		add_filter('jetpack_relatedposts_enabled', '__return_false', 100);
-		add_filter('jetpack_enable_related_posts', '__return_false', 100);
-		// WordPress.com specific filters
-		add_filter('jp_relatedposts_enabled', '__return_false', 100);
-		add_filter('wpcom_disable_related_posts', '__return_true', 100);
-
-		function baseline_disable_related_posts($options) {
-			$options['enabled'] = false;
-			$options['show_headline'] = false;
-			return $options;
-		}
-		add_filter('jetpack_relatedposts_filter_options', 'baseline_disable_related_posts', 100);
-
-		// Remove the related posts stylesheet
-		add_action('wp_enqueue_scripts', function () {
-			wp_dequeue_style('jetpack_related-posts');
-			wp_deregister_style('jetpack_related-posts');
-		}, 100);
-	}
-}
-add_action('init', 'control_jetpack_features');
-
-/**
- * Sets up customize options
- */
-
-function baseline_customize_register($wp_customize) {
-
-	// Section: Theme Options
-	$wp_customize->add_section('baseline_options', [
-		'title'    => __('Baseline Theme Options', 'baseline'),
-		'priority' => 30,
-	]);
-
-	// Setting: Show Comments
-	$wp_customize->add_setting('baseline_show_comments', [
-		'default'           => false,
-		'sanitize_callback' => 'baseline_sanitize_checkbox',
-	]);
-
-	// Setting: Disable Pagination
-	$wp_customize->add_setting('baseline_disable_pagination', [
-		'default'           => true,
-		'sanitize_callback' => 'baseline_sanitize_checkbox',
-	]);
-
-	// Settings: Jetpack Features
-	$wp_customize->add_setting('baseline_disable_sharing', [
-		'default'           => true,
-		'sanitize_callback' => 'baseline_sanitize_checkbox',
-	]);
-
-	$wp_customize->add_setting('baseline_disable_likes', [
-		'default'           => true,
-		'sanitize_callback' => 'baseline_sanitize_checkbox',
-	]);
-
-	$wp_customize->add_setting('baseline_disable_related', [
-		'default'           => true,
-		'sanitize_callback' => 'baseline_sanitize_checkbox',
-	]);
-
-	$wp_customize->add_control('baseline_show_comments', [
-		'label'    => __('Show Comments on Posts', 'baseline'),
-		'section'  => 'baseline_options',
-		'type'     => 'checkbox',
-	]);
-
-	// Controls: Jetpack Features
-	$wp_customize->add_control('baseline_disable_sharing', [
-		'label'    => __('Disable Jetpack Sharing Buttons', 'baseline'),
-		'section'  => 'baseline_options',
-		'type'     => 'checkbox',
-	]);
-
-	$wp_customize->add_control('baseline_disable_likes', [
-		'label'    => __('Disable Jetpack Likes', 'baseline'),
-		'section'  => 'baseline_options',
-		'type'     => 'checkbox',
-	]);
-
-	$wp_customize->add_control('baseline_disable_related', [
-		'label'    => __('Disable Jetpack Related Posts', 'baseline'),
-		'section'  => 'baseline_options',
-		'type'     => 'checkbox',
-	]);
-
-	// Control: Disable Pagination
-	$wp_customize->add_control('baseline_disable_pagination', [
-		'label'    => __('Disable Pagination on Home Page', 'baseline'),
-		'section'  => 'baseline_options',
-		'type'     => 'checkbox',
-	]);
-}
-add_action('customize_register', 'baseline_customize_register');
-
-// Sanitize checkboxes
-function baseline_sanitize_checkbox($checked) {
-	return (isset($checked) && $checked === true) ? true : false;
-}
 
 /**
  * Enqueue jQuery before any plugins are loaded
@@ -325,54 +204,15 @@ function get_domain_from_url($url) {
 	return $host;
 }
 
-// Add customizer options for home page template
-add_action('customize_register', function ($wp_customize) {
-	// Add a section for our template options
-	$wp_customize->add_section('linkblog_template_options', array(
-		'title'    => __('Linkblog Template Options', 'linkblog-importer'),
-		'priority' => 120,
-	));
-
-	// Add setting for home page template choice
-	$wp_customize->add_setting('linkblog_home_template', array(
-		'default'           => 'default',
-		'sanitize_callback' => 'sanitize_key',
-		'transport'         => 'refresh',
-	));
-
-	// Add control for the setting
-	$wp_customize->add_control('linkblog_home_template', array(
-		'label'    => __('Home Page Template', 'linkblog-importer'),
-		'section'  => 'linkblog_template_options',
-		'type'     => 'radio',
-		'choices'  => array(
-			'default'  => __('Default (index.php)', 'linkblog-importer'),
-			'linkblog' => __('Linkblog Template (category-linkblog.php)', 'linkblog-importer'),
-		),
-	));
-});
-
-// Filter the home template based on customizer setting
-add_filter('home_template', function ($template) {
-	$home_template = get_theme_mod('linkblog_home_template', 'default');
-
-	if ($home_template === 'linkblog') {
-		$linkblog_template = locate_template('category-linkblog.php');
-		if ($linkblog_template) {
-			return $linkblog_template;
-		}
-	}
-
-	return $template;
-});
-
 // Filter the RSS feed to use the external URL for the <link> element, if available
 // Thanks to @jeherve (https://github.com/scotthansonde/wordlandBaseline/issues/49)
 add_filter(
 	'the_permalink_rss',
 	function ($permalink) {
 		global $wp_query;
-
+		if (empty($wp_query->post)) {
+			return $permalink;
+		}
 		$post_id = $wp_query->post->ID;
 		if (! $post_id) {
 			return $permalink;
