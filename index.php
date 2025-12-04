@@ -4,6 +4,10 @@
  * The home template file
  *
  * Displays blog posts index
+ * 
+ * Query modification and post sorting (titleless first) handled via hooks in functions.php:
+ * - baseline_modify_home_query (pre_get_posts)
+ * - baseline_sort_posts_titleless_first (the_posts)
  */
 
 get_header(); ?>
@@ -11,62 +15,31 @@ get_header(); ?>
 <?php $has_blogroll = shortcode_exists('feedland-blogroll'); ?>
 <div class="divContentWrapper <?php echo $has_blogroll ? 'has-sidebar' : 'no-sidebar'; ?>">
 
-	<?php
-	// If pagination is disabled, show current and previous month posts
-	if (get_theme_mod('baseline_disable_pagination', true)) {
-		$current_time = current_time('mysql');
-		$last_month = date('Y-m-01 00:00:00', strtotime('-1 month', strtotime($current_time)));
-
-		// First try to get posts from current and previous month
-		$args = array(
-			'post_type' => 'post',
-			'posts_per_page' => -1,
-			'date_query' => array(
-				array(
-					'after' => $last_month,
-					'inclusive' => true,
-				),
-			),
-		);
-		$query = new WP_Query($args);
-
-		// If we have fewer than 5 posts, get the 5 most recent posts regardless of date
-		if ($query->post_count < 5) {
-			wp_reset_postdata();
-			$args = array(
-				'post_type' => 'post',
-				'posts_per_page' => 5,
-			);
-			$query = new WP_Query($args);
-		}
-	} else {
-		$query = $GLOBALS['wp_query'];
-	}
-
-	if ($query->have_posts()) : ?>
+	<?php if (have_posts()) : ?>
 		<div id="idStories">
 			<?php
 			$current_day = '';
-			while ($query->have_posts()) : $query->the_post();
-				if (get_theme_mod('baseline_show_date_headlines', true)) {
-					$post_day = get_the_date('l, F j, Y'); // Example: Saturday, July 5, 2025
-					if ($post_day !== $current_day) {
-						if ($current_day !== '') {
-							echo '</div>'; // Close previous day's div
-						}
-						echo '<div class="divDayGroup">';
-						echo '<div class="divDayTitle"><a href="' . esc_url(get_day_link(get_the_date('Y'), get_the_date('m'), get_the_date('d'))) . '">' . esc_html($post_day) . '</a></div>';
-						$current_day = $post_day;
+			$show_headlines = get_theme_mod('baseline_show_date_headlines', true);
+
+			while (have_posts()) : the_post();
+				$post_day = get_the_date('l, F j, Y');
+
+				// New day? Close previous group and start new one
+				if ($show_headlines && $post_day !== $current_day) {
+					if ($current_day !== '') {
+						echo '</div>'; // Close previous day's div
 					}
+					echo '<div class="divDayGroup">';
+					echo '<div class="divDayTitle"><a href="' . esc_url(get_day_link(get_the_date('Y'), get_the_date('m'), get_the_date('d'))) . '">' . esc_html($post_day) . '</a></div>';
+					$current_day = $post_day;
 				}
+
 				get_template_part('template-parts/content', get_post_type());
 			endwhile;
-			if (get_theme_mod('baseline_show_date_headlines', true)) {
-				if ($current_day !== '') {
-					echo '</div>'; // Close final day's div
-				}
+
+			if ($show_headlines && $current_day !== '') {
+				echo '</div>'; // Close last day's div
 			}
-			wp_reset_postdata();
 			?>
 		</div>
 
@@ -94,14 +67,11 @@ get_header(); ?>
 		</div>
 	<?php endif; ?>
 
-	<!-- Sidebar content will go here -->
-	<?php if (shortcode_exists('feedland-blogroll')) {
-		echo '<div class="divSidebar">';
-		echo do_shortcode('[feedland-blogroll]');
-		echo '</div>';
-	}
-	?>
-
+	<?php if (shortcode_exists('feedland-blogroll')) : ?>
+		<div class="divSidebar">
+			<?php echo do_shortcode('[feedland-blogroll]'); ?>
+		</div>
+	<?php endif; ?>
 
 </div><!-- .divContentWrapper -->
 
