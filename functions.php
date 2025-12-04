@@ -204,6 +204,53 @@ function get_domain_from_url($url) {
 	return $host;
 }
 
+/**
+ * Modify the main home query to get posts from current and previous month
+ * when pagination is disabled
+ */
+function baseline_modify_home_query($query) {
+	if (!is_admin() && $query->is_main_query() && $query->is_home()) {
+		if (get_theme_mod('baseline_disable_pagination', true)) {
+			$last_month = date('Y-m-01 00:00:00', strtotime('-1 month'));
+			
+			$query->set('posts_per_page', -1);
+			$query->set('date_query', array(
+				array('after' => $last_month, 'inclusive' => true)
+			));
+		}
+	}
+}
+add_action('pre_get_posts', 'baseline_modify_home_query');
+
+/**
+ * Sort posts so titleless posts appear first within each day
+ * Also handles the minimum 5 posts fallback on home
+ */
+function baseline_sort_posts_titleless_first($posts, $query) {
+	if (!is_admin() && $query->is_main_query() && ($query->is_home() || $query->is_date())) {
+		// If fewer than 5 posts on home, get 5 most recent instead
+		if ($query->is_home() && get_theme_mod('baseline_disable_pagination', true) && count($posts) < 5) {
+			$posts = get_posts(array('posts_per_page' => 5));
+		}
+		
+		// Sort: by date DESC, then titleless first within each day
+		usort($posts, function($a, $b) {
+			// First compare by date (newest first)
+			$date_a = strtotime(get_the_date('Y-m-d', $a));
+			$date_b = strtotime(get_the_date('Y-m-d', $b));
+			
+			if ($date_a !== $date_b) {
+				return $date_b - $date_a; // Descending
+			}
+			
+			// Titleless posts come first
+			return !empty($a->post_title) <=> !empty($b->post_title);
+		});
+	}
+	return $posts;
+}
+add_filter('the_posts', 'baseline_sort_posts_titleless_first', 10, 2);
+
 // Filter the RSS feed to use the external URL for the <link> element, if available
 // Thanks to @jeherve (https://github.com/scotthansonde/wordlandBaseline/issues/49)
 add_filter(
