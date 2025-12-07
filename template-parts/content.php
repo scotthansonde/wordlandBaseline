@@ -3,6 +3,7 @@
 /**
  * Template part for displaying posts
  */
+$show_date_headlines = get_theme_mod('baseline_show_date_headlines', true);
 ?>
 <div class="divStory">
 	<?php $has_title = get_the_title(); ?>
@@ -14,6 +15,12 @@
 				<?php the_title(); ?>
 			<?php endif; ?>
 		</div>
+		<?php if ($has_title && !$show_date_headlines) : ?>
+			<div class="divLineUnderStoryTitle">
+				<?php echo get_the_date(); ?> by <?php baseline_author_website_link(); ?>
+			</div>
+		<?php endif; ?>
+
 	<?php endif; ?>
 
 	<div class="divStoryBody">
@@ -29,13 +36,13 @@
 			</div>
 		<?php endif; ?>
 
-		<?php 
+		<?php
 		// Use our reusable function to append the link
 		$cleanup = wordland_append_external_link();
-		
+
 		// Display the content with our appended link
 		the_content();
-		
+
 		// Remove our filter if it was added
 		if ($cleanup) $cleanup();
 		?>
