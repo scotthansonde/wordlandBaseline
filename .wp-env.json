@@ -1,0 +1,10 @@
+{
+    "core": null,
+    "themes": [ "." ],
+    "plugins": [
+        "https://downloads.wordpress.org/plugin/jetpack.zip",
+        "https://downloads.wordpress.org/plugin/wordpress-importer.zip",
+        "https://downloads.wordpress.org/plugin/activitypub.zip",
+        "https://downloads.wordpress.org/plugin/all-in-one-wp-migration.zip"
+    ]
+}
