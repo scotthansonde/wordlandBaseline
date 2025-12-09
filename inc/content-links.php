@@ -9,7 +9,7 @@
 function wordland_prepend_post_anchor($content) {
 	if (in_the_loop() && is_main_query()) {
 		$post_id = get_the_ID();
-		$anchor = '<a name="a' . $post_id . '"></a>';
+		$anchor = '<a id="a' . $post_id . '"></a>';
 		$content = $anchor . $content;
 	}
 	return $content;
