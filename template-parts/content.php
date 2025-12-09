@@ -10,7 +10,7 @@ $show_date_headlines = get_theme_mod('baseline_show_date_headlines', true);
 	<?php if ($has_title) : ?>
 		<div class="divStoryTitle">
 			<?php if (is_home() || is_archive()) : ?>
-				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+				<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a><span class="spPermaLink"><a href="<?php the_permalink(); ?>" title="Direct link to this item.">#</a></span>
 			<?php else : ?>
 				<?php the_title(); ?>
 			<?php endif; ?>
