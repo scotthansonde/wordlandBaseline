@@ -111,6 +111,10 @@ a {
 	text-decoration: none;
 	}
 
+.divStoryBody a:hover, .divFooter a:hover {
+	text-decoration: underline;
+	}
+
 /* Style blockquotes */
 .divStory blockquote {
   border-left: 1px solid #000;
