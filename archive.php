@@ -10,7 +10,15 @@ get_header(); ?>
 
 <div class="divStory">
 	<div class="divStoryTitle">
-		<?php the_archive_title(); ?>
+		<?php
+		if (is_day()) {
+			// For day archives, use custom format: "Monday, December 9, 2024"
+			echo get_the_date('l, F j, Y');
+		} else {
+			// For other archives, use default archive title
+			the_archive_title();
+		}
+		?>
 	</div>
 </div>
 

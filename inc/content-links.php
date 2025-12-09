@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * Prepends an anchor tag to post content using the post ID
+ *
+ * @param string $content The post content
+ * @return string Modified content with anchor tag
+ */
+function wordland_prepend_post_anchor($content) {
+	if (in_the_loop() && is_main_query()) {
+		$post_id = get_the_ID();
+		$anchor = '<a name="a' . $post_id . '"></a>';
+		$content = $anchor . $content;
+	}
+	return $content;
+}
+add_filter('the_content', 'wordland_prepend_post_anchor', 5);
+
+
+/**
  * Appends an external link to post content if available
  *
  * @param int|null $post_id Optional post ID. Defaults to current post.
@@ -50,7 +67,10 @@ function wordland_append_external_link($post_id = null) {
 	// If no external URL, check if post has no title
 	$post_title = get_the_title($post_id);
 	if (empty(trim($post_title))) {
-		$link_url = get_permalink($post_id);
+		// Get the day archive URL and append the anchor
+		$post_date = get_the_date('Y/m/d', $post_id);
+		$day_url = home_url('/' . $post_date . '/');
+		$link_url = $day_url . '#a' . $post_id;
 
 		// Create filter function to append pound sign link
 		$append_link_filter = function ($content) use ($link_url) {
