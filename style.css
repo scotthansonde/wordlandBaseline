@@ -254,3 +254,20 @@ a {
 	gap: 10px; /* Space between columns */
 	}
 }
+
+/* Pound sign link styles */
+.spPermaLink {
+	margin-left: .4em;
+	}
+.spPermaLink a {
+	font-family: "Ubuntu";
+	color: purple;
+	opacity: 0.3;
+	font-weight: normal;
+	font-size: 14px;
+	cursor: pointer;
+	}
+.spPermaLink a:hover {
+	opacity: 0.9;
+	color: green;
+	}
