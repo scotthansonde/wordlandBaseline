@@ -16,262 +16,366 @@
 
 /* You can add custom CSS below */
 
-/* Note that we link to the baselinePlayground styles.css file in functions.php */
+body {
+    background-color: #fff
+}
 
-/* WordPress.com overrides the text-decorator for title. Set it back to none. */
+.divPageBody {
+    width: 750px;
+    margin: 50px auto 400px;
+    min-height: 400px;
+    font-family: Ubuntu,Arial,sans-serif;
+    font-size: 24px
+}
+
+.divPageTop {
+    text-align: center;
+    line-height: 110%
+}
+
+.divPageTop .divSiteTitle {
+    font-weight: 700;
+    letter-spacing: -.04em
+}
+
+.divPageTop .divSiteDescription {
+    color: #7b7b7b;
+    font-size: 14px
+}
+
+.divStory {
+    line-height: 100%
+}
+
+.divStory .divStoryTitle {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -.04em
+}
+
+.divStory .divLineUnderStoryTitle {
+    color: #7b7b7b;
+    font-size: 14px
+}
+
+.divStoryBody {
+    margin-top: 25px
+}
+
+.divLinkblogEntry p {
+    margin-bottom: 10px
+}
+
+.divFooter a,.divStoryBody a {
+    color: #08c;
+    cursor: pointer
+}
+
+.divStoryBody h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 0
+}
+
+.divStoryBody ol,.divStoryBody ul {
+    margin-top: .5em;
+    margin-bottom: 1em
+}
+
+.divStoryBody li {
+    line-height: inherit
+}
+
+.divCategories {
+    margin-top: 3em;
+    color: #7b7b7b;
+    font-size: 14px
+}
+
+.divFooter {
+    text-align: center;
+    font-size: 14px
+}
+
+@media screen and (max-width:1024px) {
+    .divPageBody {
+        width: 95%;
+        margin-top: 80px
+    }
+}
+
 :root :where(a:where(:not(.wp-element-button))) {
-  text-decoration: none;
+    text-decoration: none
 }
 
-/* Pagination styles */
 .divPagination {
-    margin: 2em 0;
+    margin: 2em 0
 }
+
 .divPagination a {
-    text-decoration: underline;
+    text-decoration: underline
 }
 
 .divPagination .nav-links {
     font-size: 16px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center
 }
 
 .divPagination .page-numbers {
-    margin: 0 0.25ch;
+    margin: 0 .25ch
 }
 
 .divPagination .prev {
     margin-right: auto;
-    margin-left: 0;
+    margin-left: 0
 }
 
 .divPagination .next {
     margin-left: auto;
-    margin-right: 0;
+    margin-right: 0
 }
-
-
 
 .divPagination .page-numbers:hover:not(.current) {
-    background-color: #f5f5f5;
+    background-color: #f5f5f5
 }
 
-/* These are additional styles */
-
 .divSiteTitle {
-  line-height: 1.1;
+    line-height: 1.1
 }
 
 .divStoryTitle {
-  line-height: 1.0;
+    line-height: 1
 }
 
-.divLineUnderStoryTitle a:hover {
-   cursor: pointer;
-   text-decoration: underline;
-   }
-
-.divCategories a:hover {
-   cursor: pointer;
-   text-decoration: underline;
-   }
-
+.divCategories a:hover,.divLineUnderStoryTitle a:hover {
+    cursor: pointer;
+    text-decoration: underline
+}
 
 a {
-	text-decoration: none;
-	cursor: pointer;
-    color: inherit;
+    cursor: pointer
 }
 
 .divStoryBody h2 {
-	font-size: 28px; /* a little bigger than paragraph text */
+    font-size: 28px
 }
 
-.divStoryTitle  a:hover, .divSiteTitle a:hover, .divPagination a:hover {
-	text-decoration: underline;
+.divDayGroup .divDayTitle a:hover,.divFooter a:hover,.divPagination a:hover,.divSiteTitle a:hover,.divStoryBody a:hover,.divStoryTitle a:hover {
+    text-decoration: underline
 }
-
 
 #idStories .divStory .divStoryTitle {
     font-size: 25px;
-    margin-top: 40px;
+    margin-top: 40px
 }
 
-/* Constrain images in posts */
-.divStory p img, .divFeaturedImage img {
-  max-width: 100%; /* Scale down if too large */
-  height: auto;    /* Maintain aspect ratio */
-  display: block;  /* Remove inline spacing */
+.divFeaturedImage img,.divStory p img {
+    max-width: 100%;
+    height: auto;
+    display: block
 }
 
-/* Override baselinePlayground for link decoration */
-.divStoryBody a, .divFooter a {
-	text-decoration: none;
-	}
+.divFooter a,.divStoryBody a {
+    text-decoration: none
+}
 
-.divStoryBody a:hover, .divFooter a:hover {
-	text-decoration: underline;
-	}
-
-/* Style blockquotes */
 .divStory blockquote {
-  border-left: 1px solid #000;
-  margin-left: 0;
-  padding-left: 20px;
+    border-left: 1px solid #000;
+    margin-left: 0;
+    padding-left: 20px
 }
 
-
-/* Social Icons */
 .divFooterSocialMenu {
-  text-align: center;
-  margin: 1.1em 0;
-}
-.divFooterSocialMenu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.divFooterSocialMenu li {
-  display: inline-block;
-  margin: 0 0.25em;
-}
-.divFooterSocialMenu a {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-}
-.divFooterSocialMenu svg {
-  width: 1.0em;
-  height: 1.0em;
-  fill: black;
-}
-.screen-reader-text {
-  position: absolute;
-  left: -9999px;
+    text-align: center;
+    margin: 1.1em 0
 }
 
-/* Day grouping styles (for main page) */
+.divFooterSocialMenu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0
+}
+
+.divFooterSocialMenu li {
+    display: inline-block;
+    margin: 0 .25em
+}
+
+.divFooterSocialMenu a {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center
+}
+
+.divFooterSocialMenu svg {
+    height: 18px;
+    width: 18px;
+    fill: orange
+}
+
+.screen-reader-text {
+    position: absolute;
+    left: -9999px
+}
 
 .divDayGroup {
-    margin-bottom: 50px;
+    margin-bottom: 50px
 }
 
 .divDayGroup .divDayTitle {
     font-size: 32px;
-    font-weight: bold;
+    font-weight: 700;
     margin-top: 50px;
     margin-bottom: 5px;
-    letter-spacing: -0.04em;
-    color: #000;
+    letter-spacing: -.04em;
+    color: #000
 }
 
-.divDayGroup .divDayTitle a {
+.divDayGroup .divDayTitle a,a {
     color: inherit;
-    text-decoration: none;
-}
-
-.divDayGroup .divDayTitle a:hover {
-    text-decoration: underline;
+    text-decoration: none
 }
 
 .divDayGroup:first-child .divDayTitle {
-    margin-top: 0;
+    margin-top: 0
 }
 
 .divDayGroup .divStory .divStoryTitle {
     margin-top: 25px;
-    font-size: 22px;
+    font-size: 22px
 }
 
 .divDayGroup .divStory:first-of-type .divStoryTitle {
-    margin-top: 20px;
+    margin-top: 20px
 }
-
-/* Linkblog styles */
 
 .divLinkblogContainer .divLinkblogDay .divLinkblogDayTitle {
     font-size: 25px;
-    margin-top: 40px;
+    margin-top: 40px
 }
+
 .divLinkblogDay .divLinkblogDayTitle {
-	font-size: 32px;
-	font-weight: bold;
-	margin-bottom: 5px;
-	letter-spacing: -0.04em;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: -.04em
 }
+
 .divLinkblogEntry {
-	margin-top: 25px;
-	font-size: 16px;
-    line-height: 24px;
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 24px
 }
-.divLinkblogEntry p {
-	margin-bottom: 10px;
-}
+
 .divLinkblogEntry a {
-	color: #0088cc;
-	text-decoration: underline;
-	cursor: pointer;
-	}
-
-
-
-/* Blogroll styles */
+    color: #08c;
+    text-decoration: underline;
+    cursor: pointer
+}
 
 .divBlogrollContainer {
-    margin-top: 40px;
-    }
-
-/* Override blogroll plugin styles with higher specificity */
-.divQuietTitle {
-    font-family: "Rancho" !important;
-    font-size: 36px !important;
-    font-weight: bold !important;
-    letter-spacing: -1px !important;
-    text-align: center !important;
+    margin-top: 40px
 }
 
-
-/* Styles for grid layout */
+.divQuietTitle {
+    font-family: "Rancho"!important;
+    font-size: 36px!important;
+    font-weight: 700!important;
+    letter-spacing: -1px!important;
+    text-align: center!important
+}
 
 .divPageBody.has-sidebar {
-    width: clamp(100px, 100% - 48px, 920px);
-	/* width: 920px; */
-    max-width: 95%;
-	}
-
-.divContentWrapper {
-	display: block; /* Default to single column */
-	}
-
-/* Apply grid layout only when sidebar exists */
-.divContentWrapper.has-sidebar {
-	display: grid;
-    grid-template-columns: minmax(100px, 1fr); /* Stack columns on mobile */
-	}
-
-/* two columns on tablets and wider */
-@media screen and (min-width: 768px) {
-.divContentWrapper.has-sidebar {
-	grid-template-columns: minmax(100px, 1fr) 250px; /* Main content takes remaining space, sidebar is 250px */
-	gap: 10px; /* Space between columns */
-	}
+    width: clamp(100px,100% - 48px,920px);
+    max-width: 95%
 }
 
-/* Pound sign link styles */
+.divContentWrapper {
+    display: block
+}
+
+.divContentWrapper.has-sidebar {
+    display: grid;
+    grid-template-columns: minmax(100px,1fr)
+}
+
+@media screen and (min-width:768px) {
+    .divContentWrapper.has-sidebar {
+        grid-template-columns: minmax(100px,1fr) 250px;
+        gap: 10px
+    }
+}
+
 .spPermaLink {
-	margin-left: .4em;
-	}
+    margin-left: .4em
+}
+
 .spPermaLink a {
-	font-family: "Ubuntu";
-	color: purple;
-	opacity: 0.3;
-	font-weight: normal;
-	font-size: 14px;
-	cursor: pointer;
-	}
+    font-family: "Ubuntu";
+    color: purple;
+    opacity: .3;
+    font-weight: 400;
+    font-size: 14px;
+    cursor: pointer
+}
+
 .spPermaLink a:hover {
-	opacity: 0.9;
-	color: green;
-	}
+    opacity: .9;
+    color: green
+}
+
+:root {
+    --vertical-space-storybody: 25px
+}
+
+.divPageBody {
+    margin-top: 30px
+}
+
+.divPageTop .divSiteTitle {
+    font-size: 75px;
+    margin-bottom: 0
+}
+
+.divStory .divLineUnderStoryTitle {
+    margin-left: 3px
+}
+
+.divStoryBody {
+    margin-bottom: 30px
+}
+
+.divFooter {
+    margin-top: 200px;
+    border-top: 1px solid silver;
+    padding-top: 15px
+}
+
+.divPageTop {
+    margin-bottom: 40px
+}
+
+.divStoryTitle {
+    font-size: 34px
+}
+
+.divStoryBody {
+    font-size: 18px;
+    line-height: 145%
+}
+
+.divStoryBody p {
+    margin-top: 10px;
+    margin-bottom: 15px
+}
+
+.divStoryBody ul {
+    padding-inline-start: 30px
+}
+
+.divStoryBody li {
+    margin-bottom: 10px
+}

@@ -47,11 +47,7 @@ function baseline_enqueue_scripts() {
 	wp_enqueue_style('google-font-rancho', 'https://fonts.googleapis.com/css?family=Rancho', array());
 
 	// Enqueue theme stylesheet
-	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array('baseline-playground'), $version);
-	// Enqueue baseline playground styles
-	wp_enqueue_style('baseline-playground', get_template_directory_uri() . '/css/baselinePlayground.css', array(), $version);
-	// Enqueue baseline playground styles from Scripting.com for development, comment out for production
-	// wp_enqueue_style('baseline-playground-scripting', 'https://s3.amazonaws.com/scripting.com/code/baselineplayground/styles.css?t=' . time(), array());
+	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array(), $version);
 }
 add_action('wp_enqueue_scripts', 'baseline_enqueue_scripts');
 
@@ -212,7 +208,7 @@ function baseline_modify_home_query($query) {
 	if (!is_admin() && $query->is_main_query() && $query->is_home()) {
 		if (get_theme_mod('baseline_disable_pagination', true)) {
 			$last_month = date('Y-m-01 00:00:00', strtotime('-1 month'));
-			
+
 			$query->set('posts_per_page', -1);
 			$query->set('date_query', array(
 				array('after' => $last_month, 'inclusive' => true)
@@ -232,17 +228,17 @@ function baseline_sort_posts_titleless_first($posts, $query) {
 		if ($query->is_home() && get_theme_mod('baseline_disable_pagination', true) && count($posts) < 5) {
 			$posts = get_posts(array('posts_per_page' => 5));
 		}
-		
+
 		// Sort: by date DESC, then titleless first within each day
-		usort($posts, function($a, $b) {
+		usort($posts, function ($a, $b) {
 			// First compare by date (newest first)
 			$date_a = strtotime(get_the_date('Y-m-d', $a));
 			$date_b = strtotime(get_the_date('Y-m-d', $b));
-			
+
 			if ($date_a !== $date_b) {
 				return $date_b - $date_a; // Descending
 			}
-			
+
 			// Titleless posts come first
 			return !empty($a->post_title) <=> !empty($b->post_title);
 		});
