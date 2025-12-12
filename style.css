@@ -98,13 +98,6 @@ body {
     font-size: 14px
 }
 
-@media screen and (max-width:1024px) {
-    .divPageBody {
-        width: 95%;
-        margin-top: 80px
-    }
-}
-
 :root :where(a:where(:not(.wp-element-button))) {
     text-decoration: none
 }
@@ -276,10 +269,6 @@ a {
     cursor: pointer
 }
 
-.divBlogrollContainer {
-    margin-top: 40px
-}
-
 .divQuietTitle {
     font-family: "Rancho"!important;
     font-size: 36px!important;
@@ -289,8 +278,7 @@ a {
 }
 
 .divPageBody.has-sidebar {
-    width: clamp(100px,100% - 48px,920px);
-    max-width: 95%
+    width: 1000px;
 }
 
 .divContentWrapper {
@@ -302,9 +290,15 @@ a {
     grid-template-columns: minmax(100px,1fr)
 }
 
+.divContentWrapper.has-sidebar #idStories {
+    margin-left: 25px;
+    margin-right: 60px;
+    }
+
+
 @media screen and (min-width:768px) {
     .divContentWrapper.has-sidebar {
-        grid-template-columns: minmax(100px,1fr) 250px;
+        grid-template-columns: 700px 250px;
         gap: 10px
     }
 }
@@ -364,7 +358,7 @@ a {
 
 .divStoryBody {
     font-size: 18px;
-    line-height: 145%
+    line-height: 27px;
 }
 
 .divStoryBody p {
