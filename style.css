@@ -4,7 +4,7 @@
  Description:       A classic baseline theme for WordLand inspired by Retrospect
  Author:            Scott Hanson
  Author URI:        https://wordland.shanson.de
- Version:           0.2.5
+ Version:           0.2.6-wordlandConnect-1
  Requires at least: 6.7
  Tested up to:      6.8.1
  Requires PHP:      8.0
@@ -296,12 +296,6 @@ a {
     }
 
 
-@media screen and (min-width:768px) {
-    .divContentWrapper.has-sidebar {
-        grid-template-columns: 700px 250px;
-        gap: 10px
-    }
-}
 
 .spPermaLink {
     margin-left: .4em
@@ -373,3 +367,136 @@ a {
 .divStoryBody li {
     margin-bottom: 10px
 }
+
+@media screen and (min-width:768px) {
+    .divContentWrapper.has-sidebar {
+        grid-template-columns: 700px 250px;
+        gap: 10px
+    }
+}
+
+/* styles for phone */
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		body {
+			font-size: 16px;
+			}
+		.divPageBody,  {
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 150px;
+			}
+		.divPagetopImage {
+			height: 135px;
+			}
+		.divPageTop, .divPagetopText {
+			top: 20;
+			width: 100%;
+			left: 0;
+			padding-left: 0;
+			height: 100px;
+			}
+		.divPagetopTitle {
+			font-size: 45px;
+			}
+		.divPagetopDescription {
+			font-size: 16px;
+			margin-top: 3px;
+			}
+		.divDayTitle {
+			font-size: 22px;
+			margin-bottom: 15px;
+			}
+		.divStoryPageTitle {
+			font-size: 28px;
+			letter-spacing: -1px;
+			}
+		.divStoryPagePostTime {
+			font-size: 15px;
+			}
+		.divOutlineHead {
+			font-size: 18px;
+			margin-bottom: 15px;
+			}
+		.divAboutOutline .divOutlineText {
+			font-size: 16px;
+			margin-bottom: 7px;
+			}
+		.divAboutOutline ul {
+			margin-left: 5px;
+			}
+		.divTitledItem .divTitle {
+			font-size: 22px;
+			margin-top: 15px;
+			}
+		.nav-tabs {
+			font-size: 16px;
+			}
+		.nav-tabs > li > a, .nav-pills > li > a {
+			padding-left: 2px;
+			padding-right: 6px;
+			}
+		.divScriptingTabs li {
+			width: 92px;
+			}
+		.divTabContent {
+			margin-top: 20px;
+			margin-left: 30px;
+			margin-right: 30px;
+			}
+		.divLastScriptingUpdate {
+			display: none;
+			}
+		 #discuss {
+			display: none;
+			}
+		.modal, .divTweetDialog { /*  1/23/19 by DW -- so the confirm dialog fits on iphone screens, per Dries's report */
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			left: 5%;
+			}
+		.divTweetDialog { /*  1/23/19 by DW */
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			}
+		.divBidenAd {
+			position: fixed;
+			top: 0;
+			right: 0;
+			opacity: .5;
+			}
+		}
+/* styles for tablet */
+	@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+		body {
+			font-size: 17px;
+			}
+		.divPagetopText {
+			top: 30;
+			width: 100%;
+			left: 0;
+			padding-left: 0;
+			}
+		.divPagetopImage {
+			height: 185px;
+			}
+		.divPageBody {
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+			margin-top: 200px;
+			}
+		.divLastScriptingUpdate {
+			display: none;
+			}
+		.divBidenAd {
+			position: fixed;
+			top: 0;
+			right: 0;
+			opacity: .5;
+			}
+		}
