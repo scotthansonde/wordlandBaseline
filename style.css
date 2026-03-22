@@ -4,7 +4,7 @@
  Description:       A classic baseline theme for WordLand inspired by Retrospect
  Author:            Scott Hanson
  Author URI:        https://wordland.shanson.de
- Version:           0.2.5
+ Version:           0.2.6
  Requires at least: 6.7
  Tested up to:      6.8.1
  Requires PHP:      8.0
@@ -321,12 +321,18 @@ a {
     color: green
 }
 
+/* Custom overrides by DW */
 :root {
     --vertical-space-storybody: 25px
 }
 
+/* 9/23/25 by DW */
 .divPageBody {
     margin-top: 30px
+}
+
+.divPageTop {
+    margin-bottom: 40px
 }
 
 .divPageTop .divSiteTitle {
@@ -334,31 +340,18 @@ a {
     margin-bottom: 0
 }
 
+.divStoryTitle {
+    font-size: 34px
+}
+
 .divStory .divLineUnderStoryTitle {
     margin-left: 3px
 }
 
 .divStoryBody {
-    margin-bottom: 30px
-}
-
-.divFooter {
-    margin-top: 200px;
-    border-top: 1px solid silver;
-    padding-top: 15px
-}
-
-.divPageTop {
-    margin-bottom: 40px
-}
-
-.divStoryTitle {
-    font-size: 34px
-}
-
-.divStoryBody {
+    margin-bottom: 30px;
     font-size: 18px;
-    line-height: 27px;
+    line-height: 150%; /* 1/15/26 by DW */
 }
 
 .divStoryBody p {
@@ -372,4 +365,34 @@ a {
 
 .divStoryBody li {
     margin-bottom: 10px
+}
+
+.divFooter {
+    margin-top: 200px;
+    border-top: 1px solid silver;
+    padding-top: 15px
+}
+
+/* 1/21/26 by DW */
+.spReplyLink {
+    font-family: "Ubuntu";
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 7px;
+    opacity: .5
+}
+
+.spReplyLink a {
+    color: inherit;
+    cursor: pointer
+}
+
+.spReplyIcon {
+    position: relative;
+    top: 1px
+}
+
+.spReplyIcon svg {
+    height: 14px;
+    opacity: .5
 }
