@@ -74,7 +74,7 @@ function wordland_append_external_link($post_id = null) {
 
 		// Create filter function to append pound sign link
 		$append_link_filter = function ($content) use ($link_url) {
-			$link_html = ' <span class="spPermaLink"><a href="' . esc_url($link_url) . '" title="Direct link to this item.">#</a></span>';
+			$link_html = ' <span class="spPermaLink" data-postId="' . esc_attr($post_id) . '"><a href="' . esc_url($link_url) . '" title="Direct link to this item.">#</a></span>';
 
 			// Check if content ends with a closing paragraph tag
 			if (preg_match('/<\/p>(\s*)$/i', $content)) {
