@@ -4,7 +4,7 @@
  Description:       A classic baseline theme for WordLand inspired by Retrospect
  Author:            Scott Hanson
  Author URI:        https://wordland.shanson.de
- Version:           0.2.9
+ Version:           0.2.9a
  Requires at least: 6.7
  Tested up to:      6.8.1
  Requires PHP:      8.0
@@ -290,16 +290,14 @@ a {
     grid-template-columns: minmax(100px,1fr)
 }
 
-.divContentWrapper.has-sidebar #idStories {
-    margin-left: 25px;
-    margin-right: 60px;
-    }
-
-
 @media screen and (min-width:768px) {
     .divContentWrapper.has-sidebar {
         grid-template-columns: 700px 250px;
         gap: 10px
+    }
+    .divContentWrapper.has-sidebar #idStories {
+        margin-left: 25px;
+        margin-right: 60px;
     }
 }
 
