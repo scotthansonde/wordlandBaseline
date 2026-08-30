@@ -221,17 +221,17 @@ function baseline_modify_home_query($query) {
 add_action('pre_get_posts', 'baseline_modify_home_query');
 
 /**
- * Sort posts so titleless posts appear first within each day
+ * Sort posts so singular posts appear first within each day
  * Also handles the minimum 5 posts fallback on home
  */
-function baseline_sort_posts_titleless_first($posts, $query) {
+function baseline_sort_posts_singular_first($posts, $query) {
 	if (!is_admin() && $query->is_main_query() && ($query->is_home() || $query->is_date())) {
 		// If fewer than 5 posts on home, get 5 most recent instead
 		if ($query->is_home() && get_theme_mod('baseline_disable_pagination', true) && count($posts) < 5) {
 			$posts = get_posts(array('posts_per_page' => 5));
 		}
 
-		// Sort: by date DESC, then titleless first within each day
+		// Sort: by date DESC, then singular first within each day
 		usort($posts, function ($a, $b) {
 			// First compare by date (newest first)
 			$date_a = strtotime(get_the_date('Y-m-d', $a));
@@ -241,13 +241,13 @@ function baseline_sort_posts_titleless_first($posts, $query) {
 				return $date_b - $date_a; // Descending
 			}
 
-			// Titleless posts come first
+			// Singular posts come first
 			return !empty($a->post_title) <=> !empty($b->post_title);
 		});
 	}
 	return $posts;
 }
-add_filter('the_posts', 'baseline_sort_posts_titleless_first', 10, 2);
+add_filter('the_posts', 'baseline_sort_posts_singular_first', 10, 2);
 
 // Filter the RSS feed to use the external URL for the <link> element, if available
 // Thanks to @jeherve (https://github.com/scotthansonde/wordlandBaseline/issues/49)

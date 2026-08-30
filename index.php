@@ -5,9 +5,9 @@
  *
  * Displays blog posts index
  * 
- * Query modification and post sorting (titleless first) handled via hooks in functions.php:
+ * Query modification and post sorting (singular first) handled via hooks in functions.php:
  * - baseline_modify_home_query (pre_get_posts)
- * - baseline_sort_posts_titleless_first (the_posts)
+ * - baseline_sort_posts_singular_first (the_posts)
  */
 
 get_header(); ?>
