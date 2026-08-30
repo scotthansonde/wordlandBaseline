@@ -40,7 +40,7 @@ function wordland_append_external_link($post_id = null) {
 
 		// Create filter function to append link
 		$append_link_filter = function ($content) use ($link_url) {
-			$domain = get_domain_from_url($link_url);
+			$domain = baseline_get_domain_from_url($link_url);
 			$link_html = ' <a href="' . $link_url . '" target="_blank" rel="noopener">' . $domain . '</a>';
 
 			// Check if content ends with a closing paragraph tag

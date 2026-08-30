@@ -56,7 +56,7 @@ $show_date_headlines = get_theme_mod('baseline_show_date_headlines', true);
 		<?php endif; ?>
 	</div>
 	<?php if (is_single()) : ?>
-		<?php $categories = get_filtered_categories(); ?>
+		<?php $categories = baseline_get_filtered_categories(); ?>
 		<?php if ($categories) : ?>
 			<div class="divCategories">
 				Categories: <?php echo join(', ', array_map(function ($cat) {

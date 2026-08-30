@@ -74,7 +74,7 @@ add_action('rest_api_init', 'baseline_register_rest_fields');
  * Get categories excluding Uncategorized
  * Returns false if only Uncategorized exists
  */
-function get_filtered_categories() {
+function baseline_get_filtered_categories() {
 	$categories = get_the_category();
 	$filtered_cats = array_filter($categories, function ($cat) {
 		return $cat->slug !== 'uncategorized';
@@ -170,7 +170,7 @@ add_filter(
 	99
 );
 
-function get_domain_from_url($url) {
+function baseline_get_domain_from_url($url) {
 	// Parse the host from the URL
 	$host = parse_url($url, PHP_URL_HOST);
 
