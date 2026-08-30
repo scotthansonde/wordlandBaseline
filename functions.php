@@ -45,9 +45,8 @@ function baseline_enqueue_scripts() {
 	// Get theme version for enqueuing local styles
 	$theme_data = wp_get_theme();
 	$version = $theme_data->Version;
-	// Enqueue Google Fonts
-	wp_enqueue_style('google-font-ubuntu', 'https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700', array());
-	wp_enqueue_style('google-font-rancho', 'https://fonts.googleapis.com/css?family=Rancho', array());
+	// Enqueue self-hosted fonts (Ubuntu, Rancho)
+	wp_enqueue_style('baseline-fonts', get_template_directory_uri() . '/css/fonts.css', array(), $version);
 
 	// Enqueue theme stylesheet
 	wp_enqueue_style('baseline-style', get_stylesheet_uri(), array(), $version);
