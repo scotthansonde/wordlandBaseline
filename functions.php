@@ -23,6 +23,9 @@ function baseline_setup() {
 
 	// Add default posts and comments RSS feed links to head
 	add_theme_support('automatic-feed-links');
+
+	// Enable featured images
+	add_theme_support('post-thumbnails');
 }
 add_action('after_setup_theme', 'baseline_setup');
 

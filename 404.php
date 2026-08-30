@@ -10,10 +10,10 @@ get_header(); ?>
 
 <div class="divStory">
 	<div class="divStoryTitle">
-		<?php esc_html_e("That page can't be found.", 'wordlandbaseline'); ?>
+		<?php esc_html_e("That page can't be found.", 'wordland-baseline'); ?>
 	</div>
 	<div class="divStoryBody">
-		<p><?php esc_html_e('It looks like nothing was found at this location. Try the', 'wordlandbaseline'); ?> <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('home page', 'wordlandbaseline'); ?></a>?</p>
+		<p><?php esc_html_e('It looks like nothing was found at this location. Try the', 'wordland-baseline'); ?> <a href="<?php echo esc_url(home_url('/')); ?>"><?php esc_html_e('home page', 'wordland-baseline'); ?></a>?</p>
 	</div>
 </div>
 

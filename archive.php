@@ -36,9 +36,9 @@ get_header(); ?>
 		<?php
 		the_posts_pagination(array(
 			'mid_size' => 2,
-			'prev_text' => __('Previous Page', 'wordlandbaseline'),
-			'next_text' => __('Next Page', 'wordlandbaseline'),
-			'screen_reader_text' => __('Posts navigation', 'wordlandbaseline')
+			'prev_text' => __('Previous Page', 'wordland-baseline'),
+			'next_text' => __('Next Page', 'wordland-baseline'),
+			'screen_reader_text' => __('Posts navigation', 'wordland-baseline')
 		));
 		?>
 	</div>

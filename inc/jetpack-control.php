@@ -37,12 +37,11 @@ function control_jetpack_features() {
 		add_filter('jp_relatedposts_enabled', '__return_false', 100);
 		add_filter('wpcom_disable_related_posts', '__return_true', 100);
 
-		function baseline_disable_related_posts($options) {
+		add_filter('jetpack_relatedposts_filter_options', function ($options) {
 			$options['enabled'] = false;
 			$options['show_headline'] = false;
 			return $options;
-		}
-		add_filter('jetpack_relatedposts_filter_options', 'baseline_disable_related_posts', 100);
+		}, 100);
 
 		// Remove the related posts stylesheet
 		add_action('wp_enqueue_scripts', function () {
