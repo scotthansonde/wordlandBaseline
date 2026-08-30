@@ -8,19 +8,16 @@
 
 get_header();
 
-// Override the main query to show all posts
-$temp = $wp_query;
-$wp_query = null;
-$wp_query = new WP_Query(array(
+$linkblog_query = new WP_Query(array(
 	'post_type' => 'post',
 	'posts_per_page' => -1,
 	'category_name' => 'linkblog'
 ));
 
-if (have_posts()) :
+if ($linkblog_query->have_posts()) :
 	echo '<div class="divLinkblogContainer">';
 	$current_day = '';
-	while (have_posts()) : the_post();
+	while ($linkblog_query->have_posts()) : $linkblog_query->the_post();
 		$post_day = get_the_date('l, F j, Y'); // Example: Saturday, July 5, 2025
 		if ($post_day !== $current_day) {
 			if ($current_day !== '') {
@@ -37,9 +34,7 @@ if (have_posts()) :
 ?>
 	</div>
 	<?php
-	// Restore original query
 	wp_reset_postdata();
-	$wp_query = $temp;
 	?>
 
 <?php else : ?>
